@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Detalle Daruma</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding">
+  <ion-text color="rosa" class="ion-text-center">
+    <h2 class="marginTopM"> <b>{{nombre}}</b> </h2>
+  </ion-text>
+  
+  <ion-row class="ion-justify-content-center ion-padding-vertical" >
+    <ion-col class="ion-justify-content-center" size="10" Size-md="6" >
+      <img *ngIf="estado == 6" class=" noMostrarG" src="../../../assets/imgs/daruma 2.png" alt="DarumaUnOjo.png">
+      <img *ngIf="estado == 6" class="noMostrarChico" src="../../../assets/imgs/daruma 2.png" alt="DarumaUnOjo.png">
+      <img *ngIf="estado == 8" class=" noMostrarG" src="../../../assets/imgs/daruma 3.png" alt="DarumaDosOjo.png">
+      <img *ngIf="estado == 8" class="noMostrarChico" src="../../../assets/imgs/daruma 3.png" alt="DarumaDosOjo.png">
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-md="8">
+      <ion-row class="ion-no-padding" class="ion-no-padding">
+        <ion-col class="ion-no-padding" size="4">
+          <ion-text color="rosados">
+            <h6 class="marginTopM"><b>Prop&oacute;sito: </b></h6>
+          </ion-text>
+        </ion-col>
+        <ion-col class="ion-no-padding" size="8">
+          <h6 class="marginTopM">{{ proposito }}</h6>
+        </ion-col>        
+      </ion-row>
+      <ion-row class="ion-no-padding">
+        <ion-col class="ion-no-padding" size="4">
+          <ion-text color="azul">
+            <h6 class="marginTopM"><b>Fecha Inicio: </b></h6>
+          </ion-text>
+        </ion-col>
+        <ion-col class="ion-no-padding" size="8">
+          <h6 class="marginTopM">{{fechaIni | date: 'dd/MM/yyyy'}}</h6>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-no-padding" *ngIf="estado == 8">
+        <ion-col class="ion-no-padding" size="4">
+          <ion-text color="verde">
+            <h6 class="marginTopM"><b>Fecha Fin:</b></h6>
+          </ion-text>
+        </ion-col>
+        <ion-col class="ion-no-padding" size="8">
+          <h6 class="marginTopM">{{fechaFin | date: 'dd/MM/yyyy'}}</h6>
+        </ion-col>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+  
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-md="8">
+      <ion-item class="ion-no-padding item-background-color" >
+        <ion-text color="rosados">
+          <ion-label ><b>Estatus: </b></ion-label>
+        </ion-text> 
+        <ion-select class="ion-align-self-start" slot="end" [(ngModel)]="estado" cancelText="Cancelar" 
+        [disabled]="isEnabled" (ionChange)="cambiarEstado()">
+          <ion-select-option value="6">Activo</ion-select-option>
+          <ion-select-option value="8" >Completado</ion-select-option>
+        </ion-select>
+               
+      </ion-item>
+    </ion-col>
+  </ion-row>
+</ion-content>
+<ion-footer class="footerColor ion-no-border" >
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

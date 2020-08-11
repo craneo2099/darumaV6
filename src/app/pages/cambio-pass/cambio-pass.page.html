@@ -1,0 +1,128 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cambiar Contrase&ntilde;a</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding-vertical" >
+  <form fixed="true" class="ion-no-padding" [formGroup]="cambioPassForm"
+  (ngSubmit)="cambiarPass()">
+  <ion-grid class="ion-no-padding">
+    <ion-row class="ion-justify-content-center ion-padding-bottom" >
+      <img class="imgRed2 noMostrarG"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+      <img class="imgRed noMostrarChico"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-padding-bottom centrarG">
+      <ion-col size="12" size-md="6">
+        <ion-text color="rosa">
+          <p class="ion-padding-start ion-no-margin">
+            <b>Completa los campos:</b>
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center">
+      <ion-col size="12" size-md="6" class="ion-no-padding">
+        <ion-list class="ion-no-margin ion-no-padding">
+          <!-- vieja -->
+          <ion-item>
+            <ion-label position="floating" color="primary">
+              <ion-icon name="key"></ion-icon>
+              Contrase&ntilde;a
+              <ion-text color="gris">
+                <span >(Actual)</span>
+              </ion-text>
+            </ion-label>
+            <ion-input type="password" name="passwordO" clearInput="true"
+            formControlName="passwordO" required></ion-input>
+          </ion-item>
+          <!-- Validacion PassO -->
+          <ng-container *ngFor="let validation of validation_messages.passwordO">
+            <ion-item  *ngIf="cambioPassForm.get('passwordO').hasError(validation.type) && (cambioPassForm.get('passwordO').dirty || cambioPassForm.get('passwordO').touched)">
+              <ion-text color="danger">
+                <p >{{ validation.message }}</p>
+              </ion-text>
+            </ion-item>
+          </ng-container>
+          <div formGroupName="matching_passwords">
+            <!-- PassN -->
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                <ion-icon name="key"></ion-icon>
+                Nueva Contrase&ntilde;a
+              </ion-label>
+              <ion-input type="password" name="passwordN" clearInput="true"
+              formControlName="passwordN" required></ion-input>
+            </ion-item>
+            <!-- Validacion PassN -->
+            <ng-container *ngFor="let validation of validation_messages.passwordN" ion-col col-12>
+              <ion-item  *ngIf="cambioPassForm.get('matching_passwords').get('passwordN').hasError(validation.type) && (cambioPassForm.get('matching_passwords').get('passwordN').dirty || cambioPassForm.get('matching_passwords').get('passwordN').touched)">
+                <ion-text color="danger" >
+                  <p >{{ validation.message }}</p>
+                </ion-text>
+              </ion-item>
+            </ng-container>
+            <!-- PassNC Confirma -->
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                <ion-icon name="key"></ion-icon>
+                Nueva Contrase&ntilde;a
+                <ion-text color="gris">
+                  <span >(Confirma)</span>
+                </ion-text>
+              </ion-label>
+              <ion-input type="password" name="passwordNC" clearInput="true"
+              formControlName="passwordNC" required></ion-input>
+            </ion-item>
+            <ng-container *ngFor="let validation of validation_messages.passwordNC">
+              <ion-item  *ngIf="cambioPassForm.get('matching_passwords').get('passwordNC').hasError(validation.type) && (cambioPassForm.get('matching_passwords').get('passwordNC').dirty || cambioPassForm.get('matching_passwords').get('passwordNC').touched)">
+                <ion-text color="danger" >
+                  <p >{{ validation.message }}</p>
+                </ion-text>
+              </ion-item>
+            </ng-container>
+  
+            <ng-container *ngFor="let validation of validation_messages.matching_passwords">
+              <ion-item  *ngIf="cambioPassForm.get('matching_passwords').hasError(validation.type) && (cambioPassForm.get('matching_passwords').get('passwordNC').dirty || cambioPassForm.get('matching_passwords').get('passwordNC').touched)">
+                <ion-text color="danger">
+                  <p >{{ validation.message }}</p>
+                </ion-text>
+              </ion-item>
+            </ng-container>
+          </div>
+        </ion-list>
+      </ion-col>
+      
+    </ion-row>
+
+    <ion-row class="ion-justify-content-center ion-padding-horizontal ion-padding-top" >
+      <ion-col class="colorFondo" size="12" size-md="6">
+        <ion-button type="submit" color="verde" 
+          expand="block" class="">
+            <ion-icon slot="start" name="create"></ion-icon>
+            Cambiar
+        </ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  </form>
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor ion-no-border" *ngIf = "isKeyboardHide">
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

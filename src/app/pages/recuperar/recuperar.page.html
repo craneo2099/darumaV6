@@ -1,0 +1,107 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Recuperar Contrase&ntilde;a</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding-vertical" >
+  <ion-grid class="ion-no-padding" fixed="true">
+    <form 
+    [formGroup]="recuperarForm"
+    (ngSubmit)="enviarMail()">
+      <ion-row class="ion-justify-content-center" >
+        <img class="imgRed noMostrarG"
+          src="../../assets/imgs/LogoKoiCT.png" alt="logoKoiHT2">
+        <img class="imgRed noMostrarChico"
+          src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+      </ion-row>
+      
+      <ion-row class="paddingBottomM ion-justify-content-center">
+        <ion-col size="11" size-md="8" class="marginLeftM">
+          <ion-text color="rosa">
+            <p class="ion-no-margin ion-margin-top">
+              <b>Escribe tu correo electr&oacute;nico:</b>
+            </p>
+          </ion-text>   
+        </ion-col>
+      </ion-row>
+      <!-- formulario -->
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8" class="ion-no-padding">          
+          <ion-item>
+            <ion-label position="floating" color="primary">
+              <ion-icon name="person"></ion-icon>
+              Correo
+              <ion-text color="gris">
+                <span>(e-mail)</span>
+              </ion-text>                  
+            </ion-label>
+            <ion-input type="email" clearInput="true"
+              formControlName="correo" required>
+            </ion-input>
+          </ion-item>
+          <!-- validacion -->
+          <ion-item *ngIf="recuperarForm.get('correo').errors && recuperarForm.get('correo').dirty">
+            <ion-text color="danger">
+              <p *ngIf="recuperarForm.get('correo').hasError('required')">
+                Campo requerido
+              </p>
+            </ion-text>
+            <ion-text color="danger">
+              <p *ngIf="recuperarForm.get('correo').hasError('pattern')">
+                Escribe tu e-mail (nombre@dominio.com)
+              </p>
+            </ion-text>             
+          </ion-item>
+          <!-- captcha -->
+          <ion-row>
+            <ion-col size="6">
+              <ion-item>
+                <img class="" src="{{ imgUrl }}" >
+              </ion-item>              
+            </ion-col>
+            <ion-col size="6">
+              <ion-item >
+                <ion-input type="" name="captcha" formControlName="captcha"
+                  clearInput="true" placeholder="Escribe el texto"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>
+          
+          <!-- Validacion captcha -->
+          <ng-container *ngFor="let validation of validation_messages.captcha">
+            <ion-item  *ngIf="recuperarForm.get('captcha').hasError(validation.type) && (recuperarForm.get('captcha').dirty || recuperarForm.get('captcha').touched)">
+              <ion-text color="danger">
+                <p>{{ validation.message }}</p>
+              </ion-text>
+            </ion-item>
+          </ng-container>          
+        </ion-col>
+      </ion-row>
+      <!-- boton -->
+      <ion-row class="ion-justify-content-center ion-padding-horizontal ion-padding-top" >
+        <ion-col size="12" size-md="6">
+          <ion-button type="submit" color="verde" expand="block">
+              <ion-icon slot="start" name="mail"></ion-icon>
+              Enviar Correo
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid> 
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor" *ngIf = "isKeyboardHide">
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

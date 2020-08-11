@@ -1,0 +1,34 @@
+<ion-menu side="start" menuId="unico" contentId="principal">
+  <ion-header>
+    <div class="colorFondo" padding >
+      <img src="./../../../assets/imgs/logoKoiHT2.png" alt="logoKoiHR">
+    </div>
+    <ion-toolbar>
+
+      <ion-title>
+
+        <ion-text color='verde'><span> M</span></ion-text>
+        <ion-text color='azul'><span> e</span></ion-text>
+        <ion-text color='rosados'><span> n</span></ion-text>
+        <ion-text color='verde'><span> &uacute;</span></ion-text>       
+
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content class="outer-content ">
+
+
+    <ion-list>
+      <ion-menu-toggle autoHide="false">
+        <ion-item *ngFor="let page of pages" 
+          [routerLink]="page.componente" (click)="goToPage()"
+          >
+          <ion-icon slot="start" color="{{page.color}}" name="{{page.icon}}" ></ion-icon>
+          <ion-label color="{{page.color}}">{{ page.titulo }}</ion-label>          
+        </ion-item>
+      </ion-menu-toggle>
+
+
+    </ion-list>
+  </ion-content>
+</ion-menu>

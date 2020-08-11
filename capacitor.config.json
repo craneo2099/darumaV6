@@ -1,0 +1,13 @@
+{
+  "appId": "com.devstarnovatech.Darumakoinobori",
+  "appName": "Daruma Koinobori",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "plugins": {
+    "SplashScreen": {
+      "launchShowDuration": 0
+    }
+  },
+  "cordova": {}
+}

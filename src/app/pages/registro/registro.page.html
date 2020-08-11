@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrate</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding-vertical">
+  <form  class="ion-no-padding" [formGroup]="registroForm"
+  (ngSubmit)="enviarRegistro()">
+  <ion-grid fixed="true" class="ion-no-padding">
+    <ion-row  class="ion-justify-content-center paddingVerticalM">
+      <img class="imgRed noMostrarG"
+        src="../../assets/imgs/LogoKoiCT.png" alt="logoKoiCT">
+      <img class="imgRed noMostrarChico"
+        src="../../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+    </ion-row>
+    <ion-row class="paddingBottomM ion-justify-content-center">
+      <ion-col size="11" size-md="8">
+        <ion-text color="rosa" class="ion-padding-start">
+          <p class="ion-no-margin">
+            <b>Completa los campos:</b>
+          </p>
+        </ion-text>  
+      </ion-col>    
+    </ion-row>
+
+    <ion-grid class="ion-no-padding">
+      <ion-row class="ion-justify-content-center">
+        <ion-col class="ion-no-padding" size="12" size-md="8">
+          <!-- correo -->
+          <ion-item>
+            <ion-label position="floating" color="primary">
+              <ion-icon name="person"></ion-icon>
+              Correo
+              <ion-text color="gris">
+                <span>(e-mail)</span>  
+              </ion-text>              
+            </ion-label>
+            <ion-input type="email" name="correo" clearInput="true"
+            formControlName="correo" required>
+            </ion-input>
+          </ion-item>
+          <!-- validacion Correo -->
+          <ion-item *ngIf="registroForm.get('correo').errors && registroForm.get('correo').dirty">
+            <ion-text color="danger" *ngIf="registroForm.get('correo').hasError('required')">
+              <p>
+                Campo requerido
+              </p>
+            </ion-text>
+            <ion-text color="danger" *ngIf="registroForm.get('correo').hasError('pattern')">
+              <p>
+                Escribe tu e-mail (nombre@dominio.com)
+              </p>
+            </ion-text>            
+          </ion-item>
+
+          <!-- Grupo Pass -->
+          <div formGroupName="matching_passwords" class="ion-no-padding" >
+            <!-- pass -->
+            <ion-item class="inputc">
+              <ion-label position="floating" color="primary">
+                <ion-icon name="key"></ion-icon>
+                Contrase&ntilde;a
+                <ion-text color="gris">
+                  <span>(password)</span>
+                </ion-text>                
+              </ion-label>
+              <ion-input type="password" name="password"
+              clearInput="true" formControlName="password" required>
+              </ion-input>
+            </ion-item>
+            <!-- Validacion Pass -->
+            <ng-container *ngFor="let validation of validation_messages.password" ion-col col-12>
+              <ion-item  *ngIf="registroForm.get('matching_passwords').get('password').hasError(validation.type) && (registroForm.get('matching_passwords').get('password').dirty || registroForm.get('matching_passwords').get('password').touched)">
+                <ion-text color="danger">
+                  <p >{{ validation.message }}</p>
+                </ion-text>                
+              </ion-item>
+            </ng-container>
+            <!-- passC -->
+            <ion-item>
+              <ion-label position="floating" color="primary">
+                <ion-icon name="key"></ion-icon>
+                Contrase&ntilde;a
+                <ion-text color="gris">
+                  <span>(confirmalo)</span>
+                </ion-text>                
+              </ion-label>
+              <ion-input type="password" name="passwordC"
+              clearInput="true" formControlName="passwordC" required>
+              </ion-input>
+            </ion-item>
+            <!-- Validacion PassC -->
+            <ng-container *ngFor="let validation of validation_messages.passwordC" ion-col col-12>
+              <ion-item  *ngIf="registroForm.get('matching_passwords').get('passwordC').hasError(validation.type) && (registroForm.get('matching_passwords').get('passwordC').dirty || registroForm.get('matching_passwords').get('passwordC').touched)">
+                <ion-text color="danger">
+                  <p>{{ validation.message }}</p>
+                </ion-text>                
+              </ion-item>
+            </ng-container>
+            <ng-container *ngFor="let validation of validation_messages.matching_passwords" ion-col col-12 >
+              <ion-item  *ngIf="registroForm.get('matching_passwords').hasError(validation.type) && (registroForm.get('matching_passwords').get('passwordC').dirty || registroForm.get('matching_passwords').get('passwordC').touched)">
+                <ion-text color="danger">
+                  <p>{{ validation.message }}</p>
+                </ion-text>                
+              </ion-item>
+            </ng-container>            
+          </div>
+          <ion-row class="ion-align-items-stretch">
+            <ion-col size="6">
+              <!-- captcha -->
+              <ion-item>
+                <!-- <ion-img src="{{ imgUrl }}" ></ion-img> -->
+                <img class="imgMitad" src="{{ imgUrl }}" >
+              </ion-item>
+            </ion-col>
+            <ion-col size="6" class="ion-align-self-stretch">
+              <ion-item>
+                <ion-input  name="captcha" formControlName="captcha"
+                  clearInput="true" placeholder="Escribe el texto"></ion-input>
+              </ion-item>
+            </ion-col>            
+          </ion-row>
+          <!-- Validacion captcha -->
+          <ng-container *ngFor="let validation of validation_messages.captcha" ion-col col-12>
+            <ion-item  *ngIf="registroForm.get('captcha').hasError(validation.type) && (registroForm.get('captcha').dirty || registroForm.get('captcha').touched)">
+              <ion-text color="danger">
+                <p>{{ validation.message }}</p>
+              </ion-text>                
+            </ion-item>
+          </ng-container>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <small >
+          <p class="ion-no-margin ion-margin-top" >Al dar click en registrarse acepta nuestros</p>
+        </small>
+      </ion-row>
+      <!-- <img src="{{ imgUrl }}" > -->
+      <ion-row class="ion-justify-content-center" >
+        <small >
+          <p class="ion-no-margin padingTopMdos" ><a (click)="abreTerminos()" >T&eacute;rminos y Condiciones</a></p>
+        </small>
+      </ion-row>    
+    </ion-grid>
+    <ion-grid>
+      <!-- boton -->
+      <ion-row class="ion-justify-content-center ion-padding-horizontal">
+        <ion-col size="12" size-md="6">
+          <ion-button type="submit" expand="block">
+              <ion-icon slot="start" name="send"></ion-icon>
+              Registrarse
+          </ion-button>
+        </ion-col>
+
+      </ion-row>   
+    </ion-grid>
+  </ion-grid>
+  </form>
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor ion-no-border" *ngIf = "isKeyboardHide">
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

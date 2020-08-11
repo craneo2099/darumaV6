@@ -1,0 +1,81 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button> -->
+      <ion-menu-button color="primary"  menu="unico">
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Acerca de nosotros</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding">
+  <ion-row class="noMostrarChico ion-justify-content-center" 
+    padding-bottom>
+    <img class="imgRed"
+      src="../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+  </ion-row>
+  <img class="noMostrarG"
+      src="../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+
+  <ion-row class="ion-justify-content-center"> 
+    <ion-col size="12" size-md="8">
+      <!-- <h2 class="ion-text-center ion-no-margins" >Artesan&iacute;as Japonesas</h2> -->
+      <p class="ion-text-justify ion-no-margin" >
+        Creamos darumas de colores para acompañarte en tus proyectos, 
+        no importa el tiempo en que demores en concretarlo. Nuestro consejo 
+        es que disfrutes del camino hacia tu meta. 
+        ¡Vamos, fuerza hasta el final, lo lograrás!
+      </p>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8">
+          <ion-slides spaceBetween="10" pager="true" [options]="cube">
+            <ion-slide *ngFor='let img of imagenes'>
+              <!-- <ion-avatar> -->
+                <img  src="{{img.url}}" alt="{{img.alt}}" class="">
+              <!-- </ion-avatar> -->
+            </ion-slide>    
+          </ion-slides>
+        </ion-col>
+      </ion-row> 
+      <p class="ion-text-center ion-no-margin ion-margin-horizontal" >Vis&iacute;tanos en nuestro sitio web:</p>
+      <p class="ion-text-center ion-no-margin"><a (click)="abreSitio()" >www.koinobori-artesanias.com</a></p>
+      <p class="ion-text-center" >
+          どうもありがとうございます。Muchas gracias!
+      </p>
+      <h4 class="ion-text-center" >Redes Sociales</h4> 
+      <!-- botones -->
+      <ion-grid>
+        <ion-row>
+          <ion-col size="6">
+            <ion-button color="azulface" expand="block" (click)="abreFace()">
+              <ion-icon slot="start" name="logo-facebook"></ion-icon>
+              Facebook
+            </ion-button>
+          </ion-col>
+          <ion-col size="6">
+            <ion-button color="vioinsta" expand="block" (click)="abreInsta()">
+              <ion-icon slot="start" name="logo-instagram"></ion-icon>
+              Instagram
+            </ion-button>
+          </ion-col>          
+        </ion-row>
+      </ion-grid>   
+    </ion-col>
+  </ion-row>
+  
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor ion-no-border" >
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

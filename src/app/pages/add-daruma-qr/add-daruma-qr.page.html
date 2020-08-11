@@ -1,0 +1,45 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Agregar Daruma</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="colorFondo2" translucent="true">
+    <ion-row class="fondoScannerAltura ion-justify-content-center ion-align-items-center">
+      <ion-col size="8" class="cuadro">
+
+      </ion-col>
+
+    </ion-row>
+  </div>
+  
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" class="ion-margin">
+    <ion-fab-button>
+      <ion-icon name="options-outline"></ion-icon>
+    </ion-fab-button>
+    <ion-fab-list side="top">
+      <ion-fab-button (click)="toggleFlashLight()">
+        <ion-icon name="flash"></ion-icon>
+      </ion-fab-button>
+      <ion-fab-button (click)="toggleCamera()">
+        <ion-icon name="camera-reverse-outline"></ion-icon> 
+      </ion-fab-button>  
+    </ion-fab-list>
+  </ion-fab>
+</ion-content>
+
+<ion-footer  translucent="true" >
+  <ion-grid class="ion-no-padding">
+    <ion-row>
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

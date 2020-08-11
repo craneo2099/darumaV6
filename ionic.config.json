@@ -1,0 +1,8 @@
+{
+  "name": "darumaV6",
+  "integrations": {
+    "capacitor": {},
+    "cordova": {}
+  },
+  "type": "angular"
+}

@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button> -->
+      <ion-menu-button color="primary"  menu="unico">
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mis Darumas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding-horizontal" >
+  <ion-row class="ion-justify-content-center paddingVerticalM ion-align-items-end centrarG"  >
+    <ion-col class="ion-no-padding" size="12" size-md="8">
+      <ion-text color="rosa ion-padding-left ion-no-margin">
+        <p>
+          <b>Bienvenid&#64;: </b>
+          <ion-text color="dark">
+            <span>{{ usuario }}</span>
+          </ion-text>        
+        </p>
+      </ion-text>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center ion-padding-horizontal">
+    <ion-col size="12" size-md="6">
+      <ion-button color="verde" type="button"
+      expand="block" (click)="goToScanQr()">
+        <ion-icon slot="start" name="qr-code-outline"></ion-icon>
+        Agregar Daruma
+      </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row class="ion-justify-content-center paddingVerticalM centrarG"  align-items-end>    
+    <ion-col class="ion-no-padding" size="12" size-md="8">
+      <ion-text color="rosa" class="ion-padding-left ion-no-margin">
+        <p>
+          <b>Elige un Daruma:</b>
+        </p>
+      </ion-text>
+    </ion-col>
+  </ion-row>
+  <!-- Lista de darumas -->
+  <ion-row class="ion-justify-content-center ion-no-padding">
+    <ion-col size="12" size-md="8" class="ion-no-padding" >
+      <ion-list class="ion-no-padding">
+        <ion-row class="ion-justify-content-center ion-no-padding"
+          *ngIf="noDarumaFlag == true">
+          <ion-col class="ion-justify-content-center footerColor ion-no-padding">
+            <ion-text class="ion-text-center" color="azul">
+              <h3>¡A&uacute;n no tienes Darumas!</h3>
+            </ion-text>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row class="ion-justify-content-center ">
+          <ion-col class="ion-no-padding footerColor"  >
+            <ion-item class="item-background-color ion-no-padding" (click)="goToDetalle(daruma.qrcode, toki)" 
+            *ngFor="let daruma of darumas">
+              <ion-thumbnail class="imgCien" slot="start" *ngIf="daruma.estado == 6">
+                <img src="./../../../assets/imgs/daruma 2.png">
+              </ion-thumbnail>
+              <ion-thumbnail class="imgCien" style="opacity: 0.5;" slot="start" *ngIf="daruma.estado == 8">
+                <img src="./../../../assets/imgs/daruma 3.png">
+              </ion-thumbnail>
+              <ion-label class="ion-no-margin">
+                <h2>{{daruma.descripcion}}</h2>
+                <p>{{daruma.fechaInicio | date: 'dd/MM/yyyy' }}</p>
+                <p style="color: black" *ngIf="daruma.estado == 6" >Activo</p>
+                <p *ngIf="daruma.estado == 8" >
+                  <span>{{daruma.fechaCompletado | date: 'dd/MM/yyyy' }}</span>
+                  <b> ¡Cumplido!</b>
+                </p>
+              </ion-label>
+              
+              <ion-button fill="clear" slot="end">Ver</ion-button>
+            </ion-item>
+          </ion-col>
+        </ion-row>
+      </ion-list>
+    </ion-col>
+  </ion-row>
+
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor ion-no-border" >
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

@@ -1,0 +1,101 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button ></ion-back-button>
+    </ion-buttons>
+    <ion-title>Prop&oacute;sito</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding-vertical">
+  <ion-grid fixed="true" class="ion-no-padding">
+    <form class="ion-no-padding"   
+      [formGroup]="logdarumaForm"
+      (ngSubmit)="logdaruForm()">
+      <ion-row class="ion-justify-content-center ion-padding" >
+        <ion-col class="ion-justify-content-center" size="10" Size-md="6" >
+          <img class=" noMostrarG"
+          src="./../../../assets/imgs/daruma 1.png" alt="Koi_DarumaGsinOjosSF">
+          <img class="noMostrarChico"
+          src="./../../../assets/imgs/daruma 1.png" alt="Koi_DarumaGsinOjosSF">
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8" class="ion-no-padding">
+          <ion-list class="ion-no-padding marginBottomM">
+            <!-- Nombre Daruma -->
+            <ion-item>
+              <ion-label position="floating" color="verde">
+              <ion-icon name="add-circle-outline"></ion-icon>
+                Dale nombre a tu Daruma
+              </ion-label>
+              <ion-input type="text" formControlName="nombreDaruma" clearInput="true" aria-required="true"></ion-input>
+            </ion-item>
+            <!-- validacion -->
+            <ion-item *ngIf="logdarumaForm.get('nombreDaruma').errors && logdarumaForm.get('nombreDaruma').dirty ">
+              <ion-text color="danger" *ngIf="logdarumaForm.get('nombreDaruma').hasError('required')">
+                <p>
+                  Campo requerido
+                </p>
+              </ion-text>         
+            </ion-item>
+            <!-- proposito -->
+            <ion-item>
+              <ion-label position="floating" color="verde">
+              <ion-icon name="add-circle-outline"></ion-icon>
+                Escribe tu prop&oacute;sito:
+              </ion-label>
+              <ion-input type="text" formControlName="proposito" clearInput="true" aria-required="true"></ion-input>
+            </ion-item>
+            <!-- validacion -->
+            <ion-item *ngIf="logdarumaForm.get('proposito').errors && logdarumaForm.get('proposito').dirty ">
+              <ion-text color="danger" *ngIf="logdarumaForm.get('proposito').hasError('required')">
+                <p>
+                  Campo requerido
+                </p>
+              </ion-text>         
+            </ion-item>
+          </ion-list>
+        </ion-col>
+      </ion-row> 
+
+      <!-- --- -->
+      <ion-row class="ion-justify-content-center ion-padding-horizontal marginBottomM">
+        <ion-col size="12" size-md="6" class="colorFondo">
+          <ion-row>
+            <ion-col size="4" class="ion-justify-content-center">
+              <ion-text color="azul">
+                <h6 ><b>Fecha Inicio: </b></h6>
+              </ion-text>              
+            </ion-col>
+            <ion-col size="8" class="ion-justify-content-center">
+              <h6>{{fecha | date: 'dd/MM/yyyy'}}</h6>
+            </ion-col>            
+          </ion-row>
+        </ion-col>
+      </ion-row>
+      <!-- boton -->
+      <ion-row class="ion-justify-content-center ion-padding-horizontal"  >
+        <ion-col size="12" size-md="6" class="colorFondo">
+          <ion-button type="submit" color="rosados"
+            expand="block">
+              <ion-icon slot="start" name="checkmark-circle-outline"></ion-icon>
+              Crear Daruma
+          </ion-button>
+        </ion-col>
+      </ion-row>
+    </form>
+  </ion-grid>
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor ion-no-border" *ngIf = "isKeyboardHide">
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

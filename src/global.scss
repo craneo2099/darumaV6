@@ -1,0 +1,156 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+
+
+.colorFondo{
+  --background: var(--ion-color-fondodos);
+}
+
+.footerColor{
+  background-color: var(--ion-color-fondodos);
+}
+
+.imgRed {
+  margin:  auto;
+  width: 40%;
+  height: 40%;
+}
+
+.imgRed2 {
+  margin:  auto;
+  width: 70%;
+  height: 70%;
+}
+
+/*Cuando la pantalla es mas de 576 submit*/
+@media only screen and (min-width: 576px) {
+  .noMostrarG {
+    display: none;
+  }
+  .centrarG{
+    margin:  auto;
+  }
+}
+
+/*Cuando la pantalla es mas de 768 submit*/
+@media only screen and (min-width: 768px) {
+  .imgMitad {
+    max-width: 70%;
+  }
+}
+
+/*Cuando la pantalla es menos de 576px*/
+@media only screen and (max-width: 576px) {
+  .noMostrarChico{
+    display: none;
+  }
+  .imgRedsm {
+    margin:  auto;
+    width: 50%;
+    height: 50%;
+  }
+}
+
+.sombra{
+  -webkit-box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2), 0 4px 6px 0 rgba(0, 0, 0, 0.19);
+}
+
+.paddingM {
+  padding-top: 8px;
+  padding-right: 8px;
+  padding-bottom: 8px;
+  padding-left: 8px;
+}
+
+.padingTopM {
+  padding-top: 8px;
+}
+
+.padingTopMdos {
+  padding-top: 4px;
+}
+
+.paddingRightM {
+  padding-right: 8px;
+}
+
+.paddingLeftM {
+  padding-left: 8px;
+}
+
+.paddingBottomM {
+  padding-bottom: 8px;
+}
+
+.paddingHorizontalM {
+  padding-right: 8px;
+  padding-left: 8px;
+}
+
+.paddingVerticalM {
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.marginHorizontalM {
+  margin-right: 8px;
+  margin-left: 8px;
+}
+
+.marginLeftM {
+  margin-left: 8px;
+}
+
+.marginRightM {
+  margin-right: 8px;
+}
+
+.marginBottomM {
+  margin-bottom: 8px;
+}
+
+.marginTopM {
+  margin-top: 8px;
+}
+
+.imgCien {
+  width:100% !important;  
+  height : 100% !important;  
+  max-width: 86px !important;  //any size
+  max-height: 86px !important; //any size
+}
+
+.item-background-color{
+  --ion-item-background:var(--ion-color-fondodos);
+}
+
+.btnTxtColor {
+  --color: #fff;
+}
+
