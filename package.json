@@ -1,8 +1,8 @@
 {
-  "name": "darumaV6",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "name": "Daruma Koinobori",
+  "version": "1.1.0",
+  "author": "Devstar Novatech",
+  "homepage": "http://devstar-novatech.com/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
