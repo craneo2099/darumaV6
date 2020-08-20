@@ -239,7 +239,7 @@ export class RegistroPage implements OnInit {
       browser.insertCSS({ code: "body{color: red;" });
     });
 
-    browser.close();
+    //browser.close();
   }
 
   ionViewWillEnter(){
