@@ -29,8 +29,6 @@ import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { MenuComponent } from './components/menu/menu.component';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
 
 @NgModule({
   declarations: [

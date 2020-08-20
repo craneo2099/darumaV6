@@ -120,29 +120,19 @@ export class AddDarumaQrPage implements OnInit {
       .catch((e: any) => console.log('Error is', e));
   }
 
-  closeModal() {
-    // if (this.navCtrl.canGoBack()){
-    //   this.viewController.dismiss();
-    // } else {
-    //   this.navCtrl.setRoot(DarumasGralPage);
-    // }
-  }
+
 
 
   toggleFlashLight(){
 
     /** Default isFlashLightOn is false ,
      * enable it if false **/
-    //console.log("flashI: ", this.isFlashLightOn);
     this.isFlashLightOn = !this.isFlashLightOn;
-    //console.log("flash2: ", this.isFlashLightOn);
     if(this.isFlashLightOn){
       this.qrScanner.enableLight();
-      //console.log("flashEntra: ", this.isFlashLightOn);
     }
     else{
       this.qrScanner.disableLight();
-      //console.log("Sino: ", this.isFlashLightOn);
     }
 
   }
@@ -172,10 +162,6 @@ export class AddDarumaQrPage implements OnInit {
       duration: 3000,
       position: 'top'
     });
-    //promise
-    // (await toast).onDidDismiss(() => {
-    //   console.log('Dismissed toast');
-    // });
 
     await toast.present();
   }
@@ -205,20 +191,16 @@ export class AddDarumaQrPage implements OnInit {
   }
 
   goToFormDaruma() {
-    // this.navCtrl.push(FormularioDarumaPage);
     this.router.navigate(['formulario-daruma']);
   }
 
-  // async ionViewDidLoad(){
-  //   // await this.loader.dismiss();
-  // }
 
   async ionViewDidEnter() {
     await this.loader.dismiss();
   } 
 
   ngOnInit() {
-    // await this.loader.dismiss();
+
   }
 
 }

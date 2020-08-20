@@ -6,7 +6,7 @@ import { AlertController, MenuController,
 import { LoginInt } from '../../Interfaces/login'
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { Storage } from '@ionic/storage';
-import { Router, RouterModule, ActivatedRoute } from '@angular/router';
+import { Router} from '@angular/router';
 import { LogueadoGuard } from 'src/app/logueado.guard';
 import * as CryptoJS from 'crypto-js';
 
@@ -49,15 +49,10 @@ export class InicioLoginPage implements OnInit {
       })
       this.storage.remove('tokenS')
       this.menuCtrl.enable(false)
-
-      // console.log("Antes", this.isKeyboardHide);
-      
-
-
      }
 
   ngOnInit() {
-    // this.keyboard.isVisible
+    
   }
 
   async logForm(){
@@ -102,8 +97,6 @@ export class InicioLoginPage implements OnInit {
           } else {
             this.storage.set('tokenS', data["result"]);
             this.storage.set('userS', this.loginForm.value.email)
-            // this.navCtrl.setRoot(DarumasGralPage);
-            // this.router.navigateByUrl('/');
             // this.logGuard.canActivate( , data["response"]);
             this.router.navigate(['darumas-gral']);
             // RouterModule.forRoot([
@@ -121,11 +114,8 @@ export class InicioLoginPage implements OnInit {
 
   async doAlert(titulo, texto) {
     let alert = await this.alertCtrl.create({
-      // title: titulo,
       header: titulo,
-      // subTitle: texto,
       subHeader: texto,
-      // enableBackdropDismiss: false,
       backdropDismiss: false,
       buttons: ['Ok']
     });
@@ -136,17 +126,12 @@ export class InicioLoginPage implements OnInit {
   async goToRegistro() {
     this.loader = await this.loadingCtrl.create();
     await this.loader.present();
-    // this.navCtrl.push(RegistroPage);
-    this.router.navigate(['registro']);
-    // RouterModule.forRoot([{path: 'registro', component: RegistroPage }])
-    // console.log('entraa cambio');
-    
+    this.router.navigate(['registro']);    
   }
 
   async goToRecuperar(){
     this.loader = await this.loadingCtrl.create();
     this.loader.present();
-    // this.navCtrl.push(RecuperarPage);
     this.router.navigate(['recuperar'])
     
   }

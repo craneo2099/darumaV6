@@ -1,7 +1,6 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AlertController, LoadingController } from '@ionic/angular';
-import { InicioLoginPage } from '../inicio-login/inicio-login.page';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { Router } from '@angular/router';
 
@@ -120,8 +119,6 @@ export class RecuperarPage implements OnInit {
         {
         text: 'Ok',
         handler: () => {
-          //console.log('Ok clicked');
-          // this.navCtrl.setRoot(InicioLoginPage);
           this.router.navigate(['inicio-login'])
         }
       }]
@@ -137,14 +134,12 @@ export class RecuperarPage implements OnInit {
       this.ngZone.run(() => {
         this.isKeyboardHide = true;
       });
-    // console.log('keyboard will hide', this.isKeyboardHide);
     });
   
     window.addEventListener('keyboardWillShow', (e) => {
       this.ngZone.run(() => {
         this.isKeyboardHide = false;
       });
-      // console.log('keyboard will show with height', this.isKeyboardHide);
     });
   }
   

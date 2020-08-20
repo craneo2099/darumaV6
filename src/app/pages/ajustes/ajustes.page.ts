@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
-import { Plugins, KeyboardInfo } from '@capacitor/core';
 import { Router, NavigationExtras } from '@angular/router';
 
 @Component({
@@ -14,7 +13,6 @@ export class AjustesPage implements OnInit {
 
   constructor(public ds: DarumaService,
     public router: Router,
-    // public keyboard: KeyboardInfo,
     public alertCtrl: AlertController) { }
 
   goToCambioPass(){
@@ -24,8 +22,6 @@ export class AjustesPage implements OnInit {
       }
     }
     this.router.navigate(['cambio-pass'], navigationExtras);
-    // this.navCtrl.push(CambioPassPage,
-    //   {token:       this.token});
   }
 
   eliminarCuenta(){
@@ -79,7 +75,6 @@ export class AjustesPage implements OnInit {
               console.log("Error eliminarCuenta", error);
             })
             this.router.navigate(['inicio-login'])
-            // this.navCtrl.setRoot(InicioLoginPage)
           }
         }
       ]

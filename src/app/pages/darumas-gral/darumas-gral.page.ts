@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { NavParams, LoadingController, Platform, AlertController, MenuController, NavController } from '@ionic/angular';
+import { LoadingController, Platform, AlertController, MenuController } from '@ionic/angular';
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { DetalleDarumaPage } from '../detalle-daruma/detalle-daruma.page';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
@@ -22,8 +21,6 @@ export class DarumasGralPage implements OnInit {
 
   constructor(
     public router: Router,
-    // public navParams: NavParams,
-    // public navCtrl: NavController,
     public keyboard: Keyboard,
     public ds: DarumaService,
     public loadingCtrl: LoadingController,
@@ -118,7 +115,6 @@ export class DarumasGralPage implements OnInit {
   }
 
   goToScanQr(){
-    // this.navCtrl.push(AddDarumaQrPage);
     this.router.navigate(['add-daruma-qr']);
   }
 
@@ -195,12 +191,6 @@ export class DarumasGralPage implements OnInit {
     this.cargaDarumasLst();
   }
 
-  // async ionViewDidLoad() {
-  //   if(await this.menuCtrl.isEnabled() == false){
-  //     this.menuCtrl.enable(true);
-  //   }
-  // }
-
   async ionViewDidLeave(){
     await this.loader.dismiss();
   }
@@ -212,10 +202,8 @@ export class DarumasGralPage implements OnInit {
 
   ngOnInit() {
     this.menuCtrl.isEnabled().then(res =>{
-      // console.log("enabled ", res);
       if (res == false) {
         this.menuCtrl.enable(true)
-        // console.log("!!!enabled True");
       }
     })
   }

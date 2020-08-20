@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController, NavParams, LoadingController, AlertController } from '@ionic/angular';
+import { LoadingController, AlertController } from '@ionic/angular';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -23,8 +23,6 @@ export class DetalleDarumaPage implements OnInit {
   public data: any;
 
   constructor(
-    // public navCtrl: NavController,
-    // public navParams: NavParams,
     public ds: DarumaService,
     public loadingCtrl: LoadingController,
     public alertCtrl: AlertController,

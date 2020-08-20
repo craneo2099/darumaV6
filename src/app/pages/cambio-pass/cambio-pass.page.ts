@@ -159,7 +159,6 @@ export class CambioPassPage implements OnInit {
         {
         text: 'Ok',
         handler: () => {
-          // this.navCtrl.setRoot(InicioLoginPage)
           this.router.navigate(['inicio-login']);
         }
       }]

@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
-import { NavController, AlertController } from '@ionic/angular';
+import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -20,7 +20,6 @@ export class FormularioDarumaPage implements OnInit {
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
     public ds: DarumaService
-    // public navParams: NavParams
   ) {
     this.logdarumaForm = this.formBuilder.group({
       proposito: ['', Validators.compose([Validators.required])],
@@ -67,13 +66,6 @@ export class FormularioDarumaPage implements OnInit {
     }
   }
 
-  // ionViewDidLoad() {
-  //   //console.log('ionViewDidLoad FormularioDarumaPage');
-  //   this.fecha = Date.now();
-  //   //console.log("fecha", this.fecha);
-
-  // }
-
   async doAlert(titulo, texto) {
     let alert = await this.alertCtrl.create({
       header: titulo,
@@ -94,7 +86,6 @@ export class FormularioDarumaPage implements OnInit {
         {
         text: 'Ok',
         handler: () => {
-          // this.navCtrl.setRoot(DarumasGralPage);
           this.router.navigate(['darumas-gral']);
         }
       }]
@@ -120,9 +111,7 @@ export class FormularioDarumaPage implements OnInit {
   }
 
   ngOnInit() {
-    //console.log('ionViewDidLoad FormularioDarumaPage');
     this.fecha = Date.now();
-    //console.log("fecha", this.fecha);
   }
 
 }
