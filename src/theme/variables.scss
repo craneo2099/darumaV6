@@ -291,6 +291,13 @@ app-root.cameraView, app-root.cameraView ion-content, app-root.cameraView .nav-d
    */
 
   body {
+    --ion-color-fondodos: #000000;
+    --ion-color-fondodos-rgb: 0,0,0;
+    --ion-color-fondodos-contrast: #ffffff;
+    --ion-color-fondodos-contrast-rgb: 255,255,255;
+    --ion-color-fondodos-shade: #000000;
+    --ion-color-fondodos-tint: #1a1a1a;
+
     --ion-color-primary: #428cff;
     --ion-color-primary-rgb: 66,140,255;
     --ion-color-primary-contrast: #ffffff;

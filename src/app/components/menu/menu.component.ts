@@ -34,15 +34,6 @@ export class MenuComponent implements OnInit {
     
   }
 
-  goToPage(page){
-    // Nota: Quita token siempre al cargar inicioPage
-    this.selectedPath = '';
-}
-
-  // ionViewDidLeave(){
-  //   this.selectedPath = '';
-  // }
-
   ngOnInit() {
     this.router.events.subscribe((event : RouterEvent) => {
       
