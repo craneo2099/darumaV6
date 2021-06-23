@@ -1,14 +1,8 @@
-import { Component,  ViewChild } from '@angular/core';
-import { Platform, IonNav, IonicModule } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Component,  ViewChild, ChangeDetectorRef } from '@angular/core';
+import { Platform, IonNav } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { InicioLoginPage } from './pages/inicio-login/inicio-login.page';
 import { DarumasGralPage } from './pages/darumas-gral/darumas-gral.page';
-import { AddDarumaQrPage } from './pages/add-daruma-qr/add-daruma-qr.page';
-import { AcercaPage } from './pages/acerca/acerca.page';
-import { AjustesPage } from './pages/ajustes/ajustes.page';
-import { Router } from '@angular/router';
-
 
 @Component({
   selector: 'app-root',
@@ -20,13 +14,12 @@ export class AppComponent {
   public rootPage: any;
   public pages: Array<{titulo: string, color: string,
     componente: any, icon: string}>
+  
 
   constructor(
     private platform: Platform,
-    private splashScreen: SplashScreen,
-    private statusBar: StatusBar,
-    private router: Router
-  ) { }
+    private statusBar: StatusBar
+  ) { this.initializeApp() }
 
   goToPage(page){
     //console.log(page);
@@ -40,20 +33,20 @@ export class AppComponent {
   }
   
   initializeApp() {
-    this.platform.ready().then(() => {
+    this.platform.ready().then( () => {
 
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
-      if(this.platform.is('android')) {
-        this.statusBar.styleBlackTranslucent();
-      } else {
-        this.statusBar.styleDefault();
-      }
 
-      this.splashScreen.hide();
-
+      //prueba modo Dark
+      this.comprueba();
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
+      //this.splashScreen.hide();
     });
+
+  }
+  comprueba (){
+    // let darkmode = await DarkMode.isDarkModeOn();
+    // console.log(darkmode.isDarkModeOn, "obscuro");
   }
 }

@@ -43,43 +43,50 @@ export class RecuperarPage implements OnInit {
     if (this.recuperarForm.get('correo').hasError('required') ||
       this.recuperarForm.get('captcha').hasError('required')) {
       await this.loader.dismiss();
-      this.doAlert("Error!!!","Campo requerido")
+      this.doAlert("Error!!!","Campo requerido", null)
     } else {
       if (this.recuperarForm.get('correo').errors &&
         this.recuperarForm.get('correo').dirty &&
         this.recuperarForm.get('correo').hasError('pattern')) {
          console.log("No entra");
          await this.loader.dismiss();
-         this.doAlert("Error!!!","Escribe el correo correctamente")
+         this.doAlert("Error!!!","Escribe el correo correctamente", null)
       }
       else if (this.recuperarForm.get('captcha').hasError('minlength')){
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"])
+        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"], null)
       }
       else if (this.recuperarForm.get('captcha').hasError('maxlength')){
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"])
+        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"], null)
       }
       else {
         console.log("Entroooo");
         let infoCaptcha = {
           token: this.tokenR,
           word: this.recuperarForm.value.captcha
-        }
-        // requerirPass
-        this.ds.requerirPass(this.recuperarForm.value.correo, infoCaptcha)
-        .subscribe(async res2 =>{
-          console.log("res2", res2);
-          await this.loader.dismiss();
-          this.doAlertConfirm("Info","Se ha enviado el correo, Sigue los pasos para reestablecer tu contraseña")
-        }, async error => {
-          console.log("error al registrar", error);
-          await this.loader.dismiss();
-          this.doAlert("Error!!!","Captcha incorrecto")
-        })
       }
+      // requerirPass
+      this.ds.requerirPass(this.recuperarForm.value.correo, infoCaptcha)
+      .subscribe(async res2 =>{
+        console.log("res2", res2);
+        await this.loader.dismiss();
+        if ( res2["result"] == "NO_HUMANO" && res2["response"] == false){
+          await this.loader.dismiss();
+          this.doAlert("Alerta!","Verifica el Texto","Que sea el mismo de la imagen")
+          console.log("Error Captcha");
+        }
+        else{
+          this.doAlertConfirm("Info","Se ha enviado el correo, Sigue los pasos para reestablecer tu contraseña")
+        }
+      }, async error => {
+        console.log("error al registrar", error);
+        await this.loader.dismiss();
+        this.doAlert("Error!!!","Captcha incorrecto", null)
+      })
     }
   }
+}
 
   obtnerCaptchaTs(){
     this.ds.obtenerCaptcha()
@@ -99,10 +106,11 @@ export class RecuperarPage implements OnInit {
     ]
   };
 
-  async doAlert(titulo, texto) {
+  async doAlert(titulo, subtitulo, texto) {
     let alert = await this.alertCtrl.create({
       header: titulo,
-      subHeader: texto,
+      subHeader: subtitulo,
+      message: texto,
       backdropDismiss: false,
       buttons: ['Ok']
     });

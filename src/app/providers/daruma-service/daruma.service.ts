@@ -36,15 +36,14 @@ export class DarumaService {
         "Authorization": ""
       })
     };
-
-  return this.respuesta = this.http.post(
-    this.darumaUrl + "loginApp/login" ,
-    this.datosLogin, httpOptions)
-    // .retry(3)
-    // .catch(err =>{
-    //   console.log("errServ",err);
-    //   return Observable.of(err);
-    // })
+    return this.respuesta = this.http.post(
+      this.darumaUrl + "loginApp/login" ,
+      this.datosLogin, httpOptions)
+      // .retry(3)
+      // .catch(err =>{
+      //   console.log("errServ",err);
+      //   return Observable.of(err);
+      // })
   }
 
   getToken(){
@@ -57,6 +56,10 @@ export class DarumaService {
 
   getNewDaruma(){
     return this.storage.get('newDAruma')
+  }
+
+  borraToken(){
+    return this.storage.remove('tokenS')
   }
 
   getDarumas(token){
@@ -87,6 +90,7 @@ export class DarumaService {
     return this.http.post(this.darumaUrl + "DarumasWS/getDarumas",
     daruma, httpOptions)
   }
+
   isQrCodeRegistrado(qrCode, token){
     // console.log("isQrCodeRegistrado", qrCode);
 

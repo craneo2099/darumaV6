@@ -27,7 +27,7 @@ export class AjustesPage implements OnInit {
   eliminarCuenta(){
     let sub = "Est\u00E1s a punto de eliminar tu cuenta"
     let mensaje = "¡Si continuas perder\u00E1s todos tus darumas y prop\u00F3sitos!"
-    this.doAlertConfirm("Advertencia!!", sub, mensaje)
+    this.doAlertConfirm("¡¡Advertencia!!", sub, mensaje)
   }
 
   obtieneToken(){
@@ -74,7 +74,11 @@ export class AjustesPage implements OnInit {
             }, error => {
               console.log("Error eliminarCuenta", error);
             })
-            this.router.navigate(['inicio-login'])
+            //Borra Token y redirige a inicio
+            this.ds.borraToken().then((token)=>{
+              console.log("tokenBorrado ");
+              this.router.navigate(['inicio-login']);        
+            }).catch((e: any) => console.log('Error borraToken', e));
           }
         }
       ]
@@ -84,7 +88,7 @@ export class AjustesPage implements OnInit {
   }
 
   ngOnInit() {
-    console.log("obtiene token");    
+    // console.log("obtiene token");
     this.obtieneToken();
   }
 

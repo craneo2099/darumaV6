@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
     <string name="app_name">Daruma Koinobori</string>
-    <string name="title_activity_main">darumaV6</string>
+    <string name="title_activity_main">Daruma Koinobori</string>
     <string name="package_name">com.devstarnovatech.Darumakoinobori</string>
-    <string name="custom_url_scheme">com.devstarnovatech.darumakoinobori</string>
+    <string name="custom_url_scheme">com.devstarnovatech.Darumakoinobori</string>
 </resources>

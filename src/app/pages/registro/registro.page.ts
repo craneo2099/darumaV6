@@ -113,42 +113,42 @@ export class RegistroPage implements OnInit {
             console.log("registroRes", res);
             if (res["response"] == true) {
               await this.loader.dismiss();
-              this.doAlertConfirm("Exito!",res["message"],"")
+              this.doAlertConfirm("¡Exito!",res["message"],"")
               console.log("Registrado!!");
             }
             else if (res["result"] == "NO_HUMANO" && res["response"] == false){
               await this.loader.dismiss();
-              this.doAlert("Alerta!","Verifica el Texto","Que sea el mismo de la imagen")
+              this.doAlert("¡Alerta!","Verifica el Texto","Que sea el mismo de la imagen")
               console.log("Error Captcha");
             }
             else if (res["result"] == "MAIL_EXISTE" && res["response"] == false){
               await this.loader.dismiss();
-              this.doAlert("Alerta!","Correo ya registrado","")
+              this.doAlert("¡Alerta!","Correo ya registrado","")
               console.log("Correo ya registrado");
             }
             else if (res["result"] == "USR_EXISTE" && res["response"] == false){
               await this.loader.dismiss();
-              this.doAlert("Alerta!","Usuario ya registrado","")
+              this.doAlert("¡Alerta!","Usuario ya registrado","")
               console.log("Usuario ya registrado");
             }
             else if (res["result"] == "SQL_ERR" && res["response"] == false){
               await this.loader.dismiss();
-              this.doAlert("Alerta!","Error al registrar","Clave: 4")
+              this.doAlert("¡Alerta!","Error al registrar","Clave: 4")
               console.log("Error al registrar");
             }
             else if (res["result"] == "SYS_ERR" && res["response"] == false){
               await this.loader.dismiss();
-              this.doAlert("Alerta!","Error al registrar","Clave: SE")
+              this.doAlert("¡Alerta!","Error al registrar","Clave: SE")
               console.log("Error al registrar SE");
             }
             else if (res["result"] == null && res["response"] == false){
               await this.loader.dismiss();
-              this.doAlert("Alerta!","Error al registrar", "")
+              this.doAlert("¡Alerta!","Error al registrar", "")
               console.log("Error al registrar");
             }
             else {
               await this.loader.dismiss();
-              this.doAlertConfirm("Error!!!","Error al registrar","Clave: GE")
+              this.doAlertConfirm("¡¡¡Error!!!","Error al registrar","Clave: GE")
               console.log("Error al registrar GE");
             }
 

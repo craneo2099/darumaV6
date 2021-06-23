@@ -159,7 +159,10 @@ export class CambioPassPage implements OnInit {
         {
         text: 'Ok',
         handler: () => {
-          this.router.navigate(['inicio-login']);
+          this.ds.borraToken().then((token)=>{
+            console.log("tokenBorrado ");
+            this.router.navigate(['inicio-login']);        
+          }).catch((e: any) => console.log('Error borraToken', e)); 
         }
       }]
     });

@@ -44,7 +44,7 @@ export class DarumasGralPage implements OnInit {
         // console.log("TienePermisoNotif", permiso);
         if (permiso == true) {
           // tiene permiso
-          console.log("Programa Notificaciones");
+          // console.log("Programa Notificaciones");
           this.localNotifications.schedule({
             id: 1,
             title: 'Tienes Darumas activos',
@@ -53,8 +53,8 @@ export class DarumasGralPage implements OnInit {
             trigger: { every: ELocalNotificationTriggerUnit.WEEK },
             data: {myData: this.usuario},
             led: { color: '#FF005E', on: 500, off: 500 } ,
-            icon: 'res://ic_stat_name.png',
-            smallIcon: 'res://ic_no'
+            icon: 'res://ic_action_name.png',
+            smallIcon: 'res://ic_stat_name'
           });
         } else {
           // no tiene permiso Notificaciones
@@ -100,7 +100,7 @@ export class DarumasGralPage implements OnInit {
     this.ds.getDarumasDetalle(daruma, token)
     .subscribe(detalle =>{
       detalle["result"].forEach(element => {
-        console.log("detalle1", element);
+        // console.log("detalle1", element);
         let navigationExtras: NavigationExtras = {
           state: {
             daruma: element,
@@ -125,12 +125,12 @@ export class DarumasGralPage implements OnInit {
     this.ds.getToken().then((token)=>{
       this.toki = token
       this.ds.getDarumas(token).subscribe(daruma =>{
-        console.log("EntraGetDarumas", daruma );
+        // console.log("EntraGetDarumas", daruma );
         if (daruma["result"].length == 0) {
           this.noDarumaFlag = true;
         }
         daruma["result"].forEach(element => {
-          console.log("qr ",element);
+          //console.log("qr ",element);
           this.darumas.push(element)
           if (element["estado"] == 6 && this.darumasIncompletos == false) {
             this.darumasIncompletos = true;
@@ -138,7 +138,10 @@ export class DarumasGralPage implements OnInit {
           }
         });
       }, error => {
+        this.loader.dismiss();
         console.log("Error getDarumas", error);
+        this.doAlertErrorCarga("¡Lo sentimos!", "Haz iniciado sesión en otro dispositivo.", 
+        "Inicia sesión nuevamente y ¡Cumple tus metas!")
       }, () => {
         this.loader.dismiss();
       })
@@ -162,6 +165,29 @@ export class DarumasGralPage implements OnInit {
       buttons: ['Ok']
     });
     await alert.present();
+  }
+
+  async doAlertErrorCarga(titulo, texto, mensaje) {
+    let alert = this.alertCtrl.create({
+      header: titulo,
+      subHeader: texto,
+      message: mensaje,
+      backdropDismiss: false,
+      buttons: [
+        {
+          text: 'Ok',
+          handler: () => {
+            //Borra Token y redirige a inicio
+            this.ds.borraToken().then((token)=>{
+              // console.log("tokenBorrado ");
+              this.router.navigate(['inicio-login']);        
+            }).catch((e: any) => console.log('Error borraToken', e));
+          }
+        }
+      ]
+    });
+
+    (await alert).present();
   }
 
   alertOfNotification(){

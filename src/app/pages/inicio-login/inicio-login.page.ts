@@ -2,7 +2,8 @@ import { Component, OnInit, NgZone } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { AlertController, MenuController, 
-  LoadingController } from '@ionic/angular';
+  LoadingController, 
+  Platform} from '@ionic/angular';
 import { LoginInt } from '../../Interfaces/login'
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { Storage } from '@ionic/storage';
@@ -23,6 +24,7 @@ export class InicioLoginPage implements OnInit {
 
   minLength = 5;
   public loader: any;
+  subscription: any;
 
   constructor(public router: Router,
     public ds: DarumaService,
@@ -33,6 +35,7 @@ export class InicioLoginPage implements OnInit {
     public datePipe: DatePipe,
     public loadingCtrl: LoadingController,
     public menuCtrl: MenuController
+    ,public platform: Platform
     , public logGuard: LogueadoGuard
     ) {
       
@@ -47,8 +50,9 @@ export class InicioLoginPage implements OnInit {
           // Validators.minLength(4)
         ])]
       })
-      this.storage.remove('tokenS')
-      this.menuCtrl.enable(false)
+      //this.storage.remove('tokenS')
+      this.menuCtrl.enable(false);
+      this.verificaToken();
      }
 
   ngOnInit() {
@@ -59,7 +63,7 @@ export class InicioLoginPage implements OnInit {
     
     this.loader = await this.loadingCtrl.create();
     if (this.loginForm.get('email').hasError('required') || this.loginForm.get('password').hasError('required')) {
-      console.log("campo nulo");
+      // console.log("campo nulo");
       let error="Error!"
       let texto="Escribe tu Usuario (e-mail) y/o Password";
       this.doAlert(error, texto);
@@ -73,7 +77,7 @@ export class InicioLoginPage implements OnInit {
       } else {
         this.loader.present();
         let z = this.datePipe.transform(new Date(), 'Z')
-        console.log("zeeetaa", z);
+        // console.log("zeeetaa", z);
 
         let sha256 = CryptoJS.SHA256(this.loginForm.value.password)
         // comentario
@@ -87,9 +91,9 @@ export class InicioLoginPage implements OnInit {
         }
         this.ds.doLogin(this.datosLogin)
         .subscribe(data => {
-          console.log("data InLog.ts",data);
+          // console.log("data InLog.ts",data);
           if (data["response"]==false) {
-            console.log("datos Incorrectos");
+            // console.log("datos Incorrectos");
             let error="Error!!!";
             // this.doAlert(error, data["message"])
             this.loader.dismiss();
@@ -104,7 +108,7 @@ export class InicioLoginPage implements OnInit {
             // ])
           }
         }, error => {
-          console.log("errooor",error);
+          // console.log("errooor",error);
           this.loader.dismiss();
           this.doAlert("Error!!","Prueba mas tarde...");
         });
@@ -136,6 +140,19 @@ export class InicioLoginPage implements OnInit {
     
   }
 
+  verificaToken() {
+    //verificar si hay un token para inicio de sesión
+    this.ds.getToken().then(async (token)=>{
+      this.loader = await this.loadingCtrl.create();
+      if (token == null) {
+        console.log("No Token");
+      } else {
+        //console.log("tokenIni: ", token);
+        this.router.navigate(['darumas-gral']);
+      }
+    }).catch((e: any) => console.log('Error getToken', e));
+  }
+
   async ionViewDidLeave(){
     await this.loader.dismiss();
    }
@@ -155,5 +172,15 @@ export class InicioLoginPage implements OnInit {
       });
       // console.log('keyboard will show with height', this.isKeyboardHide);
     });
+  }
+
+  ionViewDidEnter() {
+    this.subscription = this.platform.backButton.subscribe(()=>{
+        navigator['app'].exitApp();
+    });
+  }
+
+  ionViewWillLeave(){
+    this.subscription.unsubscribe();
   }
 }

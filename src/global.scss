@@ -47,6 +47,10 @@
   height: 70%;
 }
 
+.paddingLeftMdos {
+  padding-left: 4px;
+}
+
 /*Cuando la pantalla es mas de 576 submit*/
 @media only screen and (min-width: 576px) {
   .noMostrarG {
@@ -154,3 +158,6 @@
   --color: #fff;
 }
 
+.proposito {
+  white-space: pre-line;
+  }

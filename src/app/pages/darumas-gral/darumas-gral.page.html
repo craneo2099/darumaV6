@@ -55,27 +55,30 @@
           </ion-col>
         </ion-row>
     
-        <ion-row class="ion-justify-content-center ">
+        <ion-row class="ion-justify-content-center">
           <ion-col class="ion-no-padding footerColor"  >
             <ion-item class="item-background-color ion-no-padding" (click)="goToDetalle(daruma.qrcode, toki)" 
             *ngFor="let daruma of darumas">
-              <ion-thumbnail class="imgCien" slot="start" *ngIf="daruma.estado == 6">
+              <ion-thumbnail class="imgCien ion-no-margin paddingRightM" slot="start" *ngIf="daruma.estado == 6">
                 <img src="./../../../assets/imgs/daruma 2.png">
               </ion-thumbnail>
-              <ion-thumbnail class="imgCien" style="opacity: 0.5;" slot="start" *ngIf="daruma.estado == 8">
+              <ion-thumbnail class="imgCien ion-no-margin paddingRightM" style="opacity: 0.5;" slot="start" *ngIf="daruma.estado == 8">
                 <img src="./../../../assets/imgs/daruma 3.png">
               </ion-thumbnail>
-              <ion-label class="ion-no-margin">
-                <h2>{{daruma.descripcion}}</h2>
-                <p>{{daruma.fechaInicio | date: 'dd/MM/yyyy' }}</p>
-                <p style="color: black" *ngIf="daruma.estado == 6" >Activo</p>
-                <p *ngIf="daruma.estado == 8" >
-                  <span>{{daruma.fechaCompletado | date: 'dd/MM/yyyy' }}</span>
-                  <b> ¡Cumplido!</b>
-                </p>
-              </ion-label>
+              <div>
+                <ion-label class="ion-no-margin ion-no-padding ">
+                  <h2 class="proposito">{{daruma.descripcion}}</h2>
+                  <p>{{daruma.fechaInicio | date: 'dd/MM/yyyy' }}</p>
+                  <p style="color: black" *ngIf="daruma.estado == 6" >Activo</p>
+                  <p *ngIf="daruma.estado == 8" >
+                    <span>{{daruma.fechaCompletado | date: 'dd/MM/yyyy' }}</span>
+                    <b> ¡Cumplido!</b>
+                  </p>
+                </ion-label>
+              </div>
               
-              <ion-button fill="clear" slot="end">Ver</ion-button>
+              
+              <ion-button fill="clear ion-no-padding ion-no-margin paddingLeftMdos" slot="end">Ver</ion-button>
             </ion-item>
           </ion-col>
         </ion-row>

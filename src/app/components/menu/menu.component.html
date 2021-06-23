@@ -20,9 +20,8 @@
 
     <ion-list>
       <ion-menu-toggle autoHide="false">
-        <ion-item *ngFor="let page of pages" 
-          [routerLink]="page.componente"
-          >
+        <ion-item *ngFor="let page of pages" (click)="siSale(page.titulo)"
+          [routerLink]="page.componente">
           <ion-icon slot="start" color="{{page.color}}" name="{{page.icon}}" ></ion-icon>
           <ion-label color="{{page.color}}">{{ page.titulo }}</ion-label>          
         </ion-item>
