@@ -22,7 +22,7 @@ export class DarumaService {
     private storage: Storage) { 
     //console.log('Hello DarumaServiceProvider Provider');
     //produccion
-    this.darumaUrl = "https://koinobori-artesanias.com/darumas/public/";
+    this.darumaUrl = "https://koinobori-artesanias.com/koin/darumas/public/";
     //Proxy pruebas
     //this.darumaUrl = "/darumaUrl/";
     }

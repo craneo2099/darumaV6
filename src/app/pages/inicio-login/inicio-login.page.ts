@@ -52,16 +52,16 @@ export class InicioLoginPage implements OnInit {
       })
       //this.storage.remove('tokenS')
       this.menuCtrl.enable(false);
-      this.verificaToken();
+      // this.verificaToken();
      }
 
   ngOnInit() {
-    
+
   }
 
   async logForm(){
     
-    this.loader = await this.loadingCtrl.create();
+    
     if (this.loginForm.get('email').hasError('required') || this.loginForm.get('password').hasError('required')) {
       // console.log("campo nulo");
       let error="Error!"
@@ -146,6 +146,7 @@ export class InicioLoginPage implements OnInit {
       this.loader = await this.loadingCtrl.create();
       if (token == null) {
         console.log("No Token");
+        //incia sesion para ver tus darumas
       } else {
         //console.log("tokenIni: ", token);
         this.router.navigate(['darumas-gral']);
@@ -157,8 +158,8 @@ export class InicioLoginPage implements OnInit {
     await this.loader.dismiss();
    }
 
-  ionViewWillEnter() {
-
+  async ionViewWillEnter() {
+    this.loader = await this.loadingCtrl.create();
     window.addEventListener('keyboardWillHide', () => {
       this.ngZone.run(() => {
         this.isKeyboardHide = true;
@@ -172,6 +173,13 @@ export class InicioLoginPage implements OnInit {
       });
       // console.log('keyboard will show with height', this.isKeyboardHide);
     });
+    // deshabilita menu
+    this.menuCtrl.isEnabled().then(res =>{
+      // console.log("deshabilita menu");  
+      if (res == true) {
+          this.menuCtrl.enable(false);
+      }
+    }).catch((e: any) => console.log('Error menuCtrlIniLog', e));
   }
 
   ionViewDidEnter() {

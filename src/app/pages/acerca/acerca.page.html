@@ -11,16 +11,18 @@
   </ion-toolbar>
 </ion-header>
 
-<ion-content class="colorFondo ion-padding">
-  <ion-row class="noMostrarChico ion-justify-content-center" 
+<ion-content fullscreen class="colorFondo ion-padding">
+  <ion-row class="ion-justify-content-center" 
     padding-bottom>
-    <img class="imgRed"
+    <img class="noMostrarChico imgRed"
+      src="../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+    <img class="noMostrarG"
       src="../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
   </ion-row>
-  <img class="noMostrarG"
-      src="../assets/imgs/logoKoiHT2.png" alt="logoKoiHT2">
+ 
 
-  <ion-row class="ion-justify-content-center"> 
+  <ion-row class="ion-justify-content-center ">
+
     <ion-col size="12" size-md="8">
       <!-- <h2 class="ion-text-center ion-no-margins" >Artesan&iacute;as Japonesas</h2> -->
       <p class="ion-text-justify ion-no-margin" >
@@ -29,23 +31,29 @@
         es que disfrutes del camino hacia tu meta. 
         ¡Vamos, fuerza hasta el final, lo lograrás!
       </p>
-      <ion-row class="ion-justify-content-center">
+      <!-- <ion-row class="ion-justify-content-center">
         <ion-col size="12" size-md="8">
           <ion-slides spaceBetween="10" pager="true" [options]="cube">
             <ion-slide *ngFor='let img of imagenes'>
-              <!-- <ion-avatar> -->
-                <img  src="{{img.url}}" alt="{{img.alt}}" class="">
-              <!-- </ion-avatar> -->
+              <div class="slide">
+                <img src="{{img.url}}" alt="{{img.alt}}" class=""/>
+                <ion-label class="h2" color='{{img.color}}'>Simboliza:</ion-label>
+                <p>{{img.simboliza}}</p>
             </ion-slide>    
           </ion-slides>
         </ion-col>
-      </ion-row> 
-      <p class="ion-text-center ion-no-margin ion-margin-horizontal" >Vis&iacute;tanos en nuestro sitio web:</p>
+      </ion-row>  -->
+      <p class="ion-text-center ion-no-margin ion-margin-horizontal ion-margin-top" ><b>Vis&iacute;tanos en nuestro sitio web:</b></p>
       <p class="ion-text-center ion-no-margin"><a (click)="abreSitio()" >www.koinobori-artesanias.com</a></p>
-      <p class="ion-text-center" >
-          どうもありがとうございます。Muchas gracias!
-      </p>
-      <h4 class="ion-text-center" >Redes Sociales</h4> 
+      <p class="ion-text-center ion-no-margin ion-margin-horizontal ion-margin-top" ><b>どうもありがとうございます。</b></p>
+      <p class="ion-text-center ion-no-margin ion-margin-bottom">¡Muchas gracias!</p>
+    </ion-col>
+  </ion-row>
+
+  <ion-row class="ion-justify-content-center">
+      <p class="ion-text-justify ion-no-margin" >
+    <ion-col size="12" size-md="8">
+      <h4 class="ion-text-center">Redes Sociales</h4> 
       <!-- botones -->
       <ion-grid>
         <ion-row>

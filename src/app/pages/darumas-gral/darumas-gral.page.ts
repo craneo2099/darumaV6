@@ -29,10 +29,8 @@ export class DarumasGralPage implements OnInit {
     public alertCtrl: AlertController,
     public menuCtrl: MenuController
   ) {
-
+    
   }
-
-
 
   scheduleNotification(){
     // console.log("EntraNoti");
@@ -122,9 +120,10 @@ export class DarumasGralPage implements OnInit {
     this.loader = await this.loadingCtrl.create();
     await this.loader.present();
     // mandar llamar servicio para traer darumas
-    this.ds.getToken().then((token)=>{
-      this.toki = token
-      this.ds.getDarumas(token).subscribe(daruma =>{
+    //se deshabilita llamar al token
+    // this.ds.getToken().then((token)=>{
+    //   this.toki = token
+      this.ds.getDarumas(this.toki).subscribe(daruma =>{
         // console.log("EntraGetDarumas", daruma );
         if (daruma["result"].length == 0) {
           this.noDarumaFlag = true;
@@ -145,10 +144,11 @@ export class DarumasGralPage implements OnInit {
       }, () => {
         this.loader.dismiss();
       })
-    }).catch((e: any) => console.log('Error getToken', e));
+    // }).catch((e: any) => console.log('Error getToken', e));
   }
 
-  obtieneUsuario(){
+  async obtieneUsuario(){
+    this.loader = await this.loadingCtrl.create();
     this.ds.getUser().then((user)=>{
       this.usuario = user
       console.log("usuario ", this.usuario);
@@ -203,6 +203,29 @@ export class DarumasGralPage implements OnInit {
 
   }
 
+  verificaToken() {
+    //verificar si hay un token para inicio de sesión
+    this.ds.getToken().then( (token)=>{
+      
+      if (token == null) {
+        console.log("No Token");
+        this.router.navigate(['inicio-login']);
+      } else {
+        console.log("hayTokenIni: ", token);
+        this.toki = token
+        this.darumas = [];
+        this.menuCtrl.isEnabled().then(res =>{
+          // this.verificaToken();
+          if (res == false) {
+             this.menuCtrl.enable(true)
+           }
+          this.cargaDarumasLst();
+         }).catch((e: any) => console.log('Error menuCtrlDGral', e));
+        
+      }
+    }).catch((e: any) => console.log('Error getToken', e));
+  }
+
   ionViewWillEnter(){
     this.obtieneUsuario();
     this.noDarumaFlag = false;
@@ -213,8 +236,12 @@ export class DarumasGralPage implements OnInit {
   }
 
   ionViewDidEnter(){
-    this.darumas = [];
-    this.cargaDarumasLst();
+    this.verificaToken();
+    // console.log("tokiiiiii ", this.toki);
+    // if (this.toki != null) {
+    //   this.darumas = [];
+    //   this.cargaDarumasLst();
+    // }
   }
 
   async ionViewDidLeave(){
@@ -227,11 +254,7 @@ export class DarumasGralPage implements OnInit {
   }
 
   ngOnInit() {
-    this.menuCtrl.isEnabled().then(res =>{
-      if (res == false) {
-        this.menuCtrl.enable(true)
-      }
-    })
+
   }
 
 }

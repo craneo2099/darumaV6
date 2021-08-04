@@ -1,0 +1,186 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <!-- <ion-button (click)="toggleMenu()">
+        <ion-icon slot="icon-only" name="menu"></ion-icon>
+      </ion-button> -->
+      <ion-menu-button color="primary"  menu="unico">
+      </ion-menu-button>
+    </ion-buttons>
+    <ion-title>Los colores</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="colorFondo ion-padding ">
+  <ion-row class="ion-justify-content-center">
+    <ion-col size="12" size-md="8">
+      <ion-slides spaceBetween="10" pager="true" scrollbar="false" [options]="slideOpts">
+        <!-- Azul -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='azuldaruma'><h2 class="ion-no-margin"><b>Azul</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_azul_2.webp'}}" alt="Darumas_azul_2" class=""/>
+            <ion-text><p class="ion-no-margin">Nuestro <ion-label color="azuldaruma"><b>daruma azul</b></ion-label> es el símbolo de la seriedad con la que hacemos nuestros productos. Muestra gran frescura en su diseño.</p>
+              <p class="ion-no-margin">Te recomendamos este daruma si te idenificas a ti mismo como una persona tranquila pero emprendedora. </p>
+            </ion-text>  
+            <ion-label color="azuldaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='azuldaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Inteligencia y frescura</b></p></ion-text>
+            <ion-text class=""><ion-label  color="azuldaruma"><hr class="solid margenBajoPager"></ion-label></ion-text>
+          </div>
+        </ion-slide>
+        <!-- Blanco -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='medium'><h2 class="ion-no-margin"><b>Blanco</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_blanco_2.webp'}}" alt="Darumas_blanco_2" class=""/>
+            <ion-text><p class="ion-no-margin">La sencillez es la principal característica de nuestro <ion-label color="medium"><b>daruma blanco</b></ion-label>. Se asocia con la pureza.</p>
+              <p class="ion-no-margin">Su suave diseño, lo convierte en el amuleto ideal para decorar tu hogar y a la vez no perder de vista tus importantes metas y objetivos. </p>
+            </ion-text>  
+            <ion-label color="medium"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='medium'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Pureza y paz</b></p></ion-text>
+            <ion-label  color="medium"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- dorado -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='doradodaruma'><h2 class="ion-no-margin"><b>Dorado</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_dorado_2.webp'}}" alt="Darumas_dorado_2" class=""/>
+            <ion-text><p class="ion-no-margin">Ser positivo es más importante de lo 9ue creemos a la hora de alcanzar nuestros objetivos. Nuestro <ion-label color="doradodaruma"><b>daruma dorado</b></ion-label> pone el acento en esto.</p>
+              <p class="ion-no-margin">Es cálido, representa la amabilidad y la alegría. Seguro tu te identificas con estas cualidades. </p>
+            </ion-text>  
+            <ion-label color="doradodaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='doradodaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Riqueza y abundancia</b></p></ion-text>
+            <ion-label  color="doradodaruma"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- violeta -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='liladaruma'><h2 class="ion-no-margin"><b>Violeta</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_lila_2.webp'}}" alt="Darumas_lila_2" class=""/>
+            <ion-text><p class="ion-no-margin">Durante siglos, este color representó a la realeza. Nuestro 
+              <ion-label color="liladaruma"><b>daruma violeta</b></ion-label> 
+              representa todo esto y más. </p>
+              <p class="ion-no-margin">Está asociado tanto a lo misterioso como a la sabiduría. Si tu meta se enfoca en un crecimiento espiritual, debes elegir este daruma. </p>
+            </ion-text>  
+            <ion-label color="liladaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='liladaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Sofisticación, misterio y espiritualidad</b></p></ion-text>
+            <ion-label  color="liladaruma"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- naranja -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='naranjadaruma'><h2 class="ion-no-margin"><b>Naranja</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_naranja_2.webp'}}" alt="Darumas_naranja_2" class=""/>
+            <ion-text><p class="ion-no-margin">Este es nuestro 
+              <ion-label color="naranjadaruma"><b>daruma</b></ion-label> 
+              más juvenil. </p>
+              <p class="ion-no-margin">Representa la vitalidad y la innovación. 
+                Si te consideras un/a joven divertido/a y entusiasta, acabas de encontrar tu 
+                <ion-label color="naranjadaruma"><b>daruma</b></ion-label>.
+              </p>
+            </ion-text>  
+            <ion-label color="naranjadaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='naranjadaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Vitalidad y entusiasmo</b></p></ion-text>
+            <ion-label  color="naranjadaruma"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- negro -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='black'><h2 class="ion-no-margin"><b>Negro</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_negro_2.webp'}}" alt="Darumas_negro_2" class=""/>
+            <ion-text><p class="ion-no-margin">Nuestro 
+              <ion-label color="black"><b>daruma negro</b></ion-label> 
+              se caracteriza por su elegancia y es un símbolo de prestigio. </p>
+              <p class="ion-no-margin">Gracias a su aspecto moderno de corte ejecutivo, es elegido por profesionales cuyos objetivos involucren un crecimiento en el ámbito laboral y/o financiero. 
+              </p>
+            </ion-text>  
+            <ion-label color="black"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='black'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Elegancia y prestigio</b></p></ion-text>
+            <ion-label  color="black"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- rojo -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='rojodaruma'><h2 class="ion-no-margin"><b>Rojo</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_rojo_2.webp'}}" alt="Darumas_rojo_2" class=""/>
+            <ion-text><p class="ion-no-margin">El 
+              <ion-label color="rojodaruma"><b>rojo</b></ion-label> 
+              representa la calidez, la pasión y la energía con la que hacemos nuestros productos. </p>
+              <p class="ion-no-margin">Es el clásico daruma de Japón. Si eres una persona pro activa y dinámica, sin duda alguna, el 
+                <ion-label color="rojodaruma"><b>daruma rojo</b></ion-label> 
+                te representa.
+              </p>
+            </ion-text>  
+            <ion-label color="rojodaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='rojodaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Pasión y poder</b></p></ion-text>
+            <ion-label  color="rojodaruma"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- rosa -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='rosadaruma'><h2 class="ion-no-margin"><b>Rosado</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_rosa_2.webp'}}" alt="Darumas_rosa_2" class=""/>
+            <ion-text><p class="ion-no-margin">Nuestro 
+              <ion-label color="rosadaruma"><b>daruma rosado</b></ion-label> 
+              representa amor puro, pues hasta en las amistades encontramos amor. Es dulce y delicado.  </p>
+              <p class="ion-no-margin">Si tu objetivo es conseguir una pareja o una amistad especial, tu 
+                <ion-label color="rosadaruma"><b>daruma</b></ion-label> 
+                es el
+                <ion-label color="rosadaruma"><b>rosado</b></ion-label>.
+              </p>
+            </ion-text>  
+            <ion-label color="rosadaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='rosadaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Amor y amistad</b></p></ion-text>
+            <ion-label  color="rosadaruma"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+        <!-- verde -->
+        <ion-slide >
+          <div class="slide">
+            <ion-text class="ion-text-center" color='verdedaruma'><h2 class="ion-no-margin"><b>Verde</b></h2></ion-text>
+            <img src="{{this.darumasubi+'Darumas_verde_2.webp'}}" alt="Darumas_verde_2" class=""/>
+            <ion-text><p class="ion-no-margin">El 
+              <ion-label color="verdedaruma"><b>daruma verde</b></ion-label> 
+              representa la naturaleza en todo su esplendor, con la serenidad que la caracteriza. </p>
+              <p class="ion-no-margin">Todos somos seres en construcción, así que si tu meta apunta hacia un crecimiento más personal que profesional, este es tu 
+                <ion-label color="verdedaruma"><b>daruma</b></ion-label> 
+                .
+              </p>
+            </ion-text>  
+            <ion-label color="verdedaruma"><hr class="solid"></ion-label>
+            <ion-text class="ion-text-center" color='verdedaruma'><h3 class="ion-no-margin">Simboliza:</h3></ion-text>
+            <ion-text class="ion-margin-bottom"><p class="ion-no-margin "><b>Progreso y bienestar</b></p></ion-text>
+            <ion-label  color="verdedaruma"><hr class="solid"></ion-label>
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </ion-col>
+  </ion-row>
+  
+</ion-content>
+<!-- footer -->
+<ion-footer class="footerColor ion-no-border" >
+  <ion-grid class="ion-no-padding">
+    <ion-row >
+      <ion-col size="12">
+        <div class="ion-text-center">
+          <small>Powered by <b>Devstar Novatech.</b></small>
+        </div>        
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-footer>

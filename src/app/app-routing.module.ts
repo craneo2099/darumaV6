@@ -4,12 +4,8 @@ import { LogueadoGuard } from './logueado.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'inicio-login',
+    redirectTo: 'darumas-gral',
     pathMatch: 'full'
   },
   {
@@ -51,6 +47,10 @@ const routes: Routes = [
   {
     path: 'recuperar',
     loadChildren: () => import('./pages/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+  },
+  {
+    path: 'colores',
+    loadChildren: () => import('./pages/colores/colores.module').then( m => m.ColoresPageModule)
   },
 ];
 

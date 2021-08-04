@@ -25,6 +25,7 @@ export class MenuComponent implements OnInit {
         {titulo: 'Agregar Daruma', color: "azul", componente: '/add-daruma-qr', icon: 'qr-code-outline'},
         {titulo: 'Acerca de', color: "azul", componente: '/acerca', icon: 'information-circle'},
         {titulo: "Ajustes", color: "azul", componente: '/ajustes', icon: "settings"},
+        {titulo: "Los Colores", color: "naranjadaruma", componente: '/colores', icon: "color-palette-outline"},
         {titulo: "Salir", color: "rosados", componente: '', icon: "log-out"}
     ]    
   }
@@ -44,7 +45,8 @@ export class MenuComponent implements OnInit {
     //Al salir borra Token
     if (titulo == "Salir") {
       this.ds.borraToken().then((token)=>{
-        console.log("tokenBorrado ");        
+        console.log("tokenBorrado ");
+        this.router.navigate(['inicio-login']);     
       }).catch((e: any) => console.log('Error borraToken', e));      
     }
   }
