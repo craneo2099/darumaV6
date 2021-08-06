@@ -13,6 +13,9 @@ export class FormularioDarumaPage implements OnInit {
   public fecha;
   public logdarumaForm: FormGroup;
   public isKeyboardHide = true;
+  public imgDaruma;
+  public altImg;
+  public newDaruma;
 
   constructor(
     private ngZone: NgZone,
@@ -36,24 +39,25 @@ export class FormularioDarumaPage implements OnInit {
       this.doAlert(titutlo, texto)
     }else{
       // Sacar token y QR
-      this.ds.getNewDaruma().then((newDaruma)=>{
+      // this.ds.getNewDaruma().then((newDaruma)=>{
         // console.log("NewDarumaQr",newDaruma["qrCode"]);
         // console.log("NewDarumatoken",newDaruma["token"]);
-        this.ds.isAsignaDaruma(newDaruma["qrCode"],newDaruma["token"])
+        
+        this.ds.isAsignaDaruma(this.newDaruma["qrCode"],this.newDaruma["token"])
         .subscribe(asigna =>{
-          // console.log("asigna", asigna);
+          console.log("asigna", asigna);
           // console.log("newDArumaAntesDe",newDaruma)
-          this.ds.doActivaDaruma(newDaruma,
+          this.ds.doActivaDaruma(this.newDaruma,
             this.logdarumaForm.value.proposito,
             this.logdarumaForm.value.nombreDaruma)
-          .subscribe(resActiva =>{
-            console.log("resActiva",resActiva);
+            .subscribe(resActiva =>{
+              console.log("resActiva",resActiva);
 
-            let result = resActiva["result"];
+              let result = resActiva["result"];
             if (result == 1) {
-              this.doAlertConfirm("Exito!",resActiva["message"])
+              this.doAlertConfirm("¡Exito!",resActiva["message"])
             }else {
-              this.doAlertConfirm("Error!!!",resActiva["message"])
+              this.doAlertConfirm("¡¡¡Error!!!",resActiva["message"])
             }
           }, error => {
             console.log("Error doActivaDaruma",error);
@@ -61,7 +65,7 @@ export class FormularioDarumaPage implements OnInit {
         }, error => {
           console.log("Error isAsignaDaruma",error);
         })
-      }).catch((e: any) => console.log('Error is', e));
+      // }).catch((e: any) => console.log('Error is', e));
 
     }
   }
@@ -112,6 +116,39 @@ export class FormularioDarumaPage implements OnInit {
 
   ngOnInit() {
     this.fecha = Date.now();
+    // Sacar token y QR
+    this.ds.getNewDaruma().then((newDaruma)=>{
+      this.newDaruma = newDaruma;
+      let url = "./../../../assets/imgs/colores/"
+      if (newDaruma["color"] == "AZ") {
+        this.imgDaruma = url+"Darumas_azul_1"+".webp"
+        this.altImg = "Darumas_azul_1";
+      } else if (newDaruma["color"] == "BL"){
+        this.imgDaruma = url+"Darumas_blanco_1"+".webp"
+        this.altImg = "Darumas_blanco_1";
+      } else if (newDaruma["color"] == "DO"){
+        this.imgDaruma = url+"Darumas_dorado_1"+".webp"
+        this.altImg = "Darumas_dorado_1";
+      } else if (newDaruma["color"] == "NA"){
+        this.imgDaruma = url+"Darumas_naranja_1"+".webp"
+        this.altImg = "Darumas_naranja_1";
+      } else if (newDaruma["color"] == "NE"){
+        this.imgDaruma = url+"Darumas_negro_1"+".webp"
+        this.altImg = "Darumas_negro_1";
+      } else if (newDaruma["color"] == "RS"){
+        this.imgDaruma = url+"Darumas_rosa_1"+".webp"
+        this.altImg = "Darumas_rosa_1";
+      } else if (newDaruma["color"] == "VE"){
+        this.imgDaruma = url+"Darumas_verde_1"+".webp"
+        this.altImg = "Darumas_verde_1";
+      } else if (newDaruma["color"] == "VI"){
+        this.imgDaruma = url+"Darumas_lila_1"+".webp"
+        this.altImg = "Darumas_lila_1";
+      } else {
+        this.imgDaruma = url+"Darumas_rojo_1"+".webp"
+        this.altImg = "Darumas_rojo_1";
+      }
+    }).catch((e: any) => console.log('getNewDaruma ', e));
   }
 
 }

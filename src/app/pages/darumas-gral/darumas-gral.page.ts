@@ -19,6 +19,8 @@ export class DarumasGralPage implements OnInit {
   public noDarumaFlag;
   public darumasIncompletos: boolean;
 
+  public url = "./../../../assets/imgs/colores/";
+
   constructor(
     public router: Router,
     public keyboard: Keyboard,
@@ -129,7 +131,8 @@ export class DarumasGralPage implements OnInit {
           this.noDarumaFlag = true;
         }
         daruma["result"].forEach(element => {
-          //console.log("qr ",element);
+          // console.log("qr ",element);
+          // elige color daruma
           this.darumas.push(element)
           if (element["estado"] == 6 && this.darumasIncompletos == false) {
             this.darumasIncompletos = true;

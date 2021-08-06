@@ -64,7 +64,7 @@ export class InicioLoginPage implements OnInit {
     
     if (this.loginForm.get('email').hasError('required') || this.loginForm.get('password').hasError('required')) {
       // console.log("campo nulo");
-      let error="Error!"
+      let error="¡Error!"
       let texto="Escribe tu Usuario (e-mail) y/o Password";
       this.doAlert(error, texto);
     } else {
@@ -73,7 +73,7 @@ export class InicioLoginPage implements OnInit {
       this.loginForm.get('email').dirty &&
       this.loginForm.get('email').hasError('pattern')) {
       //  console.log("No entra");
-       this.doAlert("Error!!!","Escribe el correo correctamente")
+       this.doAlert("¡¡¡Error!!!","Escribe el correo correctamente")
       } else {
         this.loader.present();
         let z = this.datePipe.transform(new Date(), 'Z')
@@ -94,7 +94,7 @@ export class InicioLoginPage implements OnInit {
           // console.log("data InLog.ts",data);
           if (data["response"]==false) {
             // console.log("datos Incorrectos");
-            let error="Error!!!";
+            let error="¡¡¡Error!!!";
             // this.doAlert(error, data["message"])
             this.loader.dismiss();
             this.doAlert(error, "Usuario o contrase\u00F1a incorrecto")
@@ -108,9 +108,9 @@ export class InicioLoginPage implements OnInit {
             // ])
           }
         }, error => {
-          // console.log("errooor",error);
+          console.log("errooor",error);
           this.loader.dismiss();
-          this.doAlert("Error!!","Prueba mas tarde...");
+          this.doAlert("¡¡Error!!","Prueba mas tarde...");
         });
       }
     }

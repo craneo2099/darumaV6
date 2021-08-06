@@ -17,10 +17,15 @@ export class DetalleDarumaPage implements OnInit {
   public fechaFin: any;
   public qrCode: number;
   public token: string;
-  public isEnabled = false;
+  public isDisabled = false;
   public darumas: any;
   public loader: any;
   public data: any;
+  public color;
+  public imgDaruma;
+  public altImg;
+  public imgDaruma2: string;
+  public altImg2: string;
 
   constructor(
     public ds: DarumaService,
@@ -39,8 +44,9 @@ export class DetalleDarumaPage implements OnInit {
         this.estado =       this.data.daruma["estado"];
         this.qrCode =       this.data.daruma["qrcode"];
         this.token =        this.data.token;
+        this.color =        this.data.daruma["cveColor"];
         if (this.estado == 8) {
-          this.isEnabled = true;
+          this.isDisabled = true;
         }
       });
 
@@ -51,10 +57,21 @@ export class DetalleDarumaPage implements OnInit {
     console.log("CambiarEstadoAA", this.estado);
     let sub = "¿Haz cumplido tu proposito?"
     let mensaje = "Si cambias a \"Completado\" tu Daruma ser\u00E1 finalizado!"
-    if (this.estado != 6) {
-      this.doAlertConfirm("Alerta!",sub, mensaje)
+    if (this.estado == 8) {
+      this.doAlertConfirm("¡Alerta!",sub, mensaje)
       this.fechaFin = Date.now();
     }
+    if (this.estado == null) {
+      console.log("sin estado");
+      this.estado = 6;
+      console.log("estadoSE ", this.estado);
+      this.doAlert("¡Atención!","Selecciona un estatus para tu daruma","");
+    }
+  }
+
+  cancela(){
+    console.log("Regresa!!!");
+    this.estado = 6;
   }
 
   async doAlertConfirm(titulo, texto, mensaje) {
@@ -67,8 +84,8 @@ export class DetalleDarumaPage implements OnInit {
         {
           text: 'Regresar',
           handler: () => {
-            console.log("Regresa!!!");
-            this.estado = 6;
+          this.cancela();  
+            
           }
         },
         {
@@ -80,7 +97,7 @@ export class DetalleDarumaPage implements OnInit {
             .subscribe( res => {
               // console.log("completadoo", res);
               // console.log("Estado ", this.estado);
-              this.isEnabled = true;
+              this.isDisabled = true;
 
             }, error => {
               console.log("Error completarDaruma", error);
@@ -109,6 +126,86 @@ export class DetalleDarumaPage implements OnInit {
   }
 
   ngOnInit() {
+    let url = "./../../../assets/imgs/colores/";
+      console.log("integer ",this.estado);
+      
+      if (this.color == "AZ") {
+        this.imgDaruma = url+"Darumas_azul_2"+".webp"
+        this.altImg = "Darumas_azul_2";
+        this.imgDaruma2 = url+"Darumas_azul_3"+".webp"
+        this.altImg2 = "Darumas_azul_3";
+      } else if (this.color == "BL"){
+        this.imgDaruma = url+"Darumas_blanco_2"+".webp"
+        this.altImg = "Darumas_blanco_2";
+        this.imgDaruma2 = url+"Darumas_blanco_3"+".webp"
+        this.altImg2 = "Darumas_blanco_3";
+      } else if (this.color == "DO"){
+        this.imgDaruma = url+"Darumas_dorado_2"+".webp"
+        this.altImg = "Darumas_dorado_2";
+        this.imgDaruma2 = url+"Darumas_dorado_3"+".webp"
+        this.altImg2 = "Darumas_dorado_3";
+      } else if (this.color == "NA"){
+        this.imgDaruma = url+"Darumas_naranja_2"+".webp"
+        this.altImg = "Darumas_naranja_2";
+        this.imgDaruma2 = url+"Darumas_naranja_3"+".webp"
+        this.altImg2 = "Darumas_naranja_3";
+      } else if (this.color == "NE"){
+        this.imgDaruma = url+"Darumas_negro_2"+".webp"
+        this.altImg = "Darumas_negro_2";
+        this.imgDaruma2 = url+"Darumas_negro_3"+".webp"
+        this.altImg2 = "Darumas_negro_3";
+      } else if (this.color == "RS"){
+        this.imgDaruma = url+"Darumas_rosa_2"+".webp"
+        this.altImg = "Darumas_rosa_2";
+        this.imgDaruma2 = url+"Darumas_rosa_3"+".webp"
+        this.altImg2 = "Darumas_rosa_3";
+      } else if (this.color == "VE"){
+        this.imgDaruma = url+"Darumas_verde_2"+".webp"
+        this.altImg = "Darumas_verde_2";
+        this.imgDaruma2 = url+"Darumas_verde_3"+".webp"
+        this.altImg2 = "Darumas_verde_3";
+      } else if (this.color == "VI"){
+        this.imgDaruma = url+"Darumas_lila_2"+".webp"
+        this.altImg = "Darumas_lila_2";
+        this.imgDaruma2 = url+"Darumas_lila_3"+".webp"
+        this.altImg2 = "Darumas_lila_3";
+      } else {
+        this.imgDaruma = url+"Darumas_rojo_2"+".webp"
+        this.altImg = "Darumas_rojo_2";
+        this.imgDaruma2 = url+"Darumas_rojo_3"+".webp"
+        this.altImg = "Darumas_rojo_3";
+      }
+      //     if (this.color == "AZ") {
+      //   this.imgDaruma2 = url+"Darumas_azul_3"+".webp"
+      //   this.altImg2 = "Darumas_azul_3";
+      // } else if (this.color == "BL"){
+      //   this.imgDaruma2 = url+"Darumas_blanco_3"+".webp"
+      //   this.altImg2 = "Darumas_blanco_3";
+      // } else if (this.color == "DO"){
+      //   this.imgDaruma2 = url+"Darumas_dorado_3"+".webp"
+      //   this.altImg2 = "Darumas_dorado_3";
+      // } else if (this.color == "NA"){
+      //   this.imgDaruma2 = url+"Darumas_naranja_3"+".webp"
+      //   this.altImg2 = "Darumas_naranja_3";
+      // } else if (this.color == "NE"){
+      //   this.imgDaruma2 = url+"Darumas_negro_3"+".webp"
+      //   this.altImg2 = "Darumas_negro_3";
+      // } else if (this.color == "RS"){
+      //   this.imgDaruma2 = url+"Darumas_rosa_3"+".webp"
+      //   this.altImg2 = "Darumas_rosa_3";
+      // } else if (this.color == "VE"){
+      //   this.imgDaruma2 = url+"Darumas_verde_3"+".webp"
+      //   this.altImg2 = "Darumas_verde_3";
+      // } else if (this.color == "VI"){
+      //   this.imgDaruma2 = url+"Darumas_lila_3"+".webp"
+      //   this.altImg2 = "Darumas_lila_3";
+      // } else {
+      //   this.imgDaruma2 = url+"Darumas_rojo_3"+".webp"
+      //   this.altImg = "Darumas_rojo_3";
+      // }
+    
+      
   }
+    
 
 }

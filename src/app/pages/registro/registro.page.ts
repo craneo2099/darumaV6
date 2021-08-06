@@ -66,37 +66,37 @@ export class RegistroPage implements OnInit {
     this.registroForm.get('matching_passwords').get('password').hasError('required') ||
     this.registroForm.get('matching_passwords').get('passwordC').hasError('required') ||
     this.registroForm.get('captcha').hasError('required')   ){
-      console.log("Completa los campos!!!");
-      var texto = "Completa los campos!!!"
+      console.log("¡¡¡Completa los campos!!!");
+      var texto = "¡¡¡Completa los campos!!!"
       await this.loader.dismiss();
-      this.doAlert("Error!", texto, "")
+      this.doAlert("¡Error!", texto, "")
     } else {
       if (this.registroForm.get('correo').errors &&
         this.registroForm.get('correo').dirty &&
         this.registroForm.get('correo').hasError('pattern')) {
         //  console.log("No entra");
         await this.loader.dismiss();
-          this.doAlert("Error!!!","Escribe el correo correctamente", "")
+          this.doAlert("¡¡¡Error!!!","Escribe el correo correctamente", "")
       }
       else if (this.registroForm.get('matching_passwords').get('password').hasError('minlength')) {
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[1]["message"],"")
+        this.doAlert("¡¡¡Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[1]["message"],"")
       }
       else if (this.registroForm.get('matching_passwords').get('password').hasError('maxlength')) {
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[2]["message"],"")
+        this.doAlert("¡¡¡Error!!!", "Contrase\u00F1a: "+this.validation_messages.password[2]["message"],"")
       }
       else if (this.registroForm.get('matching_passwords').hasError("areEqual")) {
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Contrase\u00F1a: "+this.validation_messages.matching_passwords[0]["message"],"")
+        this.doAlert("¡¡¡Error!!!", "Contrase\u00F1a: "+this.validation_messages.matching_passwords[0]["message"],"")
       }
       else if (this.registroForm.get('captcha').hasError('minlength')){
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"],"")
+        this.doAlert("¡¡¡Error!!!", "Captcha: "+this.validation_messages.captcha[1]["message"],"")
       }
       else if (this.registroForm.get('captcha').hasError('maxlength')){
         await this.loader.dismiss();
-        this.doAlert("Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"],"")
+        this.doAlert("¡¡¡Error!!!", "Captcha: "+this.validation_messages.captcha[2]["message"],"")
       }
       else {
         if (this.registroForm.value.matching_passwords.password == this.registroForm.value.matching_passwords.passwordC) {
@@ -113,8 +113,8 @@ export class RegistroPage implements OnInit {
             console.log("registroRes", res);
             if (res["response"] == true) {
               await this.loader.dismiss();
-              this.doAlertConfirm("¡Exito!",res["message"],"")
-              console.log("Registrado!!");
+              this.doAlertConfirm("¡Éxito!",res["message"],"Inicia sesión para comenzar")
+              console.log("¡¡Registrado!!");
             }
             else if (res["result"] == "NO_HUMANO" && res["response"] == false){
               await this.loader.dismiss();
@@ -156,7 +156,7 @@ export class RegistroPage implements OnInit {
             console.log("error al registrar", error);
             //personalizar mensaje de error
             await this.loader.dismiss();
-            this.doAlert("Error!!!","Captcha incorrecto","Clave: DF")
+            this.doAlert("¡¡¡Error!!!","Captcha incorrecto","Clave: DF")
           })
         } else {
           console.log("pass diferentes");
@@ -221,7 +221,7 @@ export class RegistroPage implements OnInit {
         {
         text: 'Ok',
         handler: () => {
-          this.router.navigate(['']);
+          this.router.navigate(['inicio-login']);
         }
       }]
     });

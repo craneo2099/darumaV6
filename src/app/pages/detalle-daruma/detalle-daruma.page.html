@@ -14,10 +14,11 @@
   
   <ion-row class="ion-justify-content-center ion-padding-vertical" >
     <ion-col class="ion-justify-content-center" size="10" Size-md="6" >
-      <img *ngIf="estado == 6" class=" noMostrarG" src="../../../assets/imgs/daruma 2.png" alt="DarumaUnOjo.png">
-      <img *ngIf="estado == 6" class="noMostrarChico" src="../../../assets/imgs/daruma 2.png" alt="DarumaUnOjo.png">
-      <img *ngIf="estado == 8" class=" noMostrarG" src="../../../assets/imgs/daruma 3.png" alt="DarumaDosOjo.png">
-      <img *ngIf="estado == 8" class="noMostrarChico" src="../../../assets/imgs/daruma 3.png" alt="DarumaDosOjo.png">
+      <img *ngIf="estado == 6" class=" noMostrarG" src="{{imgDaruma}}" alt="{{altImg}}.webp">
+      <img *ngIf="estado == 6" class="noMostrarChico" src="{{imgDaruma}}" alt="{{altImg}}.webp">
+
+      <img *ngIf="estado == 8" class=" noMostrarG" src="{{imgDaruma2}}" alt="{{altImg2}}.webp">
+      <img *ngIf="estado == 8" class="noMostrarChico" src="{{imgDaruma2}}" alt="{{altImg2}}.webp">
     </ion-col>
   </ion-row>
   <ion-row class="ion-justify-content-center">
@@ -62,7 +63,7 @@
           <ion-label ><b>Estatus: </b></ion-label>
         </ion-text> 
         <ion-select class="ion-align-self-start" slot="end" [(ngModel)]="estado" cancelText="Cancelar" 
-        [disabled]="isEnabled" (ionChange)="cambiarEstado()">
+        [disabled]="isDisabled" (ionChange)="cambiarEstado()" >
           <ion-select-option value="6">Activo</ion-select-option>
           <ion-select-option value="8" >Completado</ion-select-option>
         </ion-select>

@@ -60,21 +60,23 @@ export class AddDarumaQrPage implements OnInit {
                   /////////////Inicio////////////////////////
                   this.ds.isQrCodeAsignado(text, token)
                   .subscribe(res2 =>{
-                    // console.log("res2", res2);
+                    console.log("res2", res2);
+                    // devuelve false cuando no existe el qrcode
                     if(res2["result"] == false){
                   /////////////Fin/////////////////////////
                       // console.log("no esta usado");
                       //se almacena
                       let nuevoDaruma = {
                         "qrCode": text,
-                        "token": token
+                        "token": token,
+                        "color": res2["message"]
                       }
                       this.storage.set("newDAruma", nuevoDaruma)
                       this.presentToast(mensaje);
                       this.goToFormDaruma();
                   ///////////////Inicio///////////////////////
                     }else{
-                      let titulo = "Error!"
+                      let titulo = "¡Error!"
                       let texto = "El codigo ya ha sido usado"
                       this.doAlert(titulo, texto)
                       // quitar comentario
@@ -87,7 +89,7 @@ export class AddDarumaQrPage implements OnInit {
                   ////////////////Fin////////////////////////
 
                 }else{
-                  let titulo = "Error!"
+                  let titulo = "¡Error!"
                   let texto = "El codigo es incorrecto"
                   this.doAlert(titulo, texto)
                   // this.navCtrl.setRoot(DarumasGralPage)

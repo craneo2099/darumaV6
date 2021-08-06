@@ -60,10 +60,26 @@
             <ion-item class="item-background-color ion-no-padding" (click)="goToDetalle(daruma.qrcode, toki)" 
             *ngFor="let daruma of darumas">
               <ion-thumbnail class="imgCien ion-no-margin paddingRightM" slot="start" *ngIf="daruma.estado == 6">
-                <img src="./../../../assets/imgs/daruma 2.png">
+                <img src="./../../../assets/imgs/colores/Darumas_azul_2.webp" alt="Darumas_azul_2" *ngIf="daruma.cveColor == 'AZ'">
+                <img src="./../../../assets/imgs/colores/Darumas_blanco_2.webp" alt="Darumas_blanco_2" *ngIf="daruma.cveColor == 'BL'">
+                <img src="./../../../assets/imgs/colores/Darumas_dorado_2.webp" alt="Darumas_dorado_2" *ngIf="daruma.cveColor == 'DO'">
+                <img src="./../../../assets/imgs/colores/Darumas_naranja_2.webp" alt="Darumas_naranja_2" *ngIf="daruma.cveColor == 'NA'">
+                <img src="./../../../assets/imgs/colores/Darumas_negro_2.webp" alt="Darumas_negro_2" *ngIf="daruma.cveColor == 'NE'">
+                <img src="./../../../assets/imgs/colores/Darumas_rojo_2.webp" alt="Darumas_rojo_2" *ngIf="daruma.cveColor == 'RJ'">
+                <img src="./../../../assets/imgs/colores/Darumas_rosa_2.webp" alt="Darumas_rosa_2" *ngIf="daruma.cveColor == 'RS'">
+                <img src="./../../../assets/imgs/colores/Darumas_verde_2.webp" alt="Darumas_verde_2" *ngIf="daruma.cveColor == 'VE'">
+                <img src="./../../../assets/imgs/colores/Darumas_lila_2.webp" alt="Darumas_lila_2" *ngIf="daruma.cveColor == 'VI'">
               </ion-thumbnail>
               <ion-thumbnail class="imgCien ion-no-margin paddingRightM" style="opacity: 0.5;" slot="start" *ngIf="daruma.estado == 8">
-                <img src="./../../../assets/imgs/daruma 3.png">
+                <img src="./../../../assets/imgs/colores/Darumas_azul_3.webp" alt="Darumas_azul_3" *ngIf="daruma.cveColor == 'AZ'">
+                <img src="./../../../assets/imgs/colores/Darumas_blanco_3.webp" alt="Darumas_blanco_3" *ngIf="daruma.cveColor == 'BL'">
+                <img src="./../../../assets/imgs/colores/Darumas_dorado_3.webp" alt="Darumas_dorado_3" *ngIf="daruma.cveColor == 'DO'">
+                <img src="./../../../assets/imgs/colores/Darumas_naranja_3.webp" alt="Darumas_naranja_3" *ngIf="daruma.cveColor == 'NA'">
+                <img src="./../../../assets/imgs/colores/Darumas_negro_3.webp" alt="Darumas_negro_3" *ngIf="daruma.cveColor == 'NE'">
+                <img src="./../../../assets/imgs/colores/Darumas_rojo_3.webp" alt="Darumas_rojo_3" *ngIf="daruma.cveColor == 'RJ'">
+                <img src="./../../../assets/imgs/colores/Darumas_rosa_3.webp" alt="Darumas_rosa_3" *ngIf="daruma.cveColor == 'RS'">
+                <img src="./../../../assets/imgs/colores/Darumas_verde_3.webp" alt="Darumas_verde_3" *ngIf="daruma.cveColor == 'VE'">
+                <img src="./../../../assets/imgs/colores/Darumas_lila_3.webp" alt="Darumas_lila_3" *ngIf="daruma.cveColor == 'VI'">
               </ion-thumbnail>
               <div>
                 <ion-label class="ion-no-margin ion-no-padding ">
