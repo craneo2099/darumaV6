@@ -1,7 +1,7 @@
 import { Component, OnInit, NgZone } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 
 @Component({
@@ -16,12 +16,14 @@ export class FormularioDarumaPage implements OnInit {
   public imgDaruma;
   public altImg;
   public newDaruma;
+  public loader: any;
 
   constructor(
     private ngZone: NgZone,
     public router: Router,
     public formBuilder: FormBuilder,
     public alertCtrl: AlertController,
+    public loadingCtrl: LoadingController,
     public ds: DarumaService
   ) {
     this.logdarumaForm = this.formBuilder.group({
@@ -30,12 +32,15 @@ export class FormularioDarumaPage implements OnInit {
       });
     }
 
-  logdaruForm(){
+  async logdaruForm(){
+    this.loader = await this.loadingCtrl.create();
+    await this.loader.present();
     if (this.logdarumaForm.get('proposito').hasError('required') ||
     this.logdarumaForm.get('nombreDaruma').hasError('required')){
       // console.log("vacio");
       let titutlo="Error"
       let texto="Completa todos los campos"
+      await this.loader.dismiss();
       this.doAlert(titutlo, texto)
     }else{
       // Sacar token y QR
@@ -50,13 +55,15 @@ export class FormularioDarumaPage implements OnInit {
           this.ds.doActivaDaruma(this.newDaruma,
             this.logdarumaForm.value.proposito,
             this.logdarumaForm.value.nombreDaruma)
-            .subscribe(resActiva =>{
+            .subscribe(async resActiva =>{
               console.log("resActiva",resActiva);
 
               let result = resActiva["result"];
             if (result == 1) {
+              await this.loader.dismiss();
               this.doAlertConfirm("¡Exito!",resActiva["message"])
             }else {
+              await this.loader.dismiss();
               this.doAlertConfirm("¡¡¡Error!!!",resActiva["message"])
             }
           }, error => {
@@ -75,7 +82,13 @@ export class FormularioDarumaPage implements OnInit {
       header: titulo,
       subHeader: texto,
       backdropDismiss: false,
-      buttons: ['Ok']
+      buttons: [
+        {
+        text: 'Ok',
+        handler: () => {
+          
+        }
+      }]
     });
 
     await alert.present();
@@ -150,5 +163,10 @@ export class FormularioDarumaPage implements OnInit {
       }
     }).catch((e: any) => console.log('getNewDaruma ', e));
   }
+
+  ionViewWillLeave(){
+    
+  }
+  
 
 }
