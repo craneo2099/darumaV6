@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy, RouterModule } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 import { AppComponent } from './app.component';
@@ -25,10 +24,11 @@ import { HttpClientModule } from '@angular/common/http';
 import { DatePipe } from '@angular/common';
 import { LocalNotifications } from '@ionic-native/local-notifications/ngx';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx'
-import { QRScanner } from '@ionic-native/qr-scanner/ngx';
+// import { QRScanner } from '@ionic-native/qr-scanner/ngx';
 import { InAppBrowser } from '@ionic-native/in-app-browser/ngx';
 import { MenuComponent } from './components/menu/menu.component';
-import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
+
 
 @NgModule({
   declarations: [
@@ -54,13 +54,11 @@ import { Keyboard } from '@ionic-native/keyboard/ngx';
   ],
   providers: [
     StatusBar,
-    SplashScreen,
     DatePipe,
     Camera,
-    QRScanner,
+    BarcodeScanner,
     DarumaService,
     InAppBrowser,
-    Keyboard,
     PasswordValidatorService,
     LocalNotifications,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }

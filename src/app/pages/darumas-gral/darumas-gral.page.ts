@@ -3,7 +3,6 @@ import { LoadingController, Platform, AlertController, MenuController } from '@i
 import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { Router, NavigationExtras } from '@angular/router';
-import { Keyboard } from '@ionic-native/keyboard/ngx';
 
 @Component({
   selector: 'app-darumas-gral',
@@ -23,7 +22,6 @@ export class DarumasGralPage implements OnInit {
 
   constructor(
     public router: Router,
-    public keyboard: Keyboard,
     public ds: DarumaService,
     public loadingCtrl: LoadingController,
     private localNotifications: LocalNotifications,
