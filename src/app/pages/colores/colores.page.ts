@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ColoresPage implements OnInit {
 
-  private darumasubi = "../../../assets/imgs/colores/";
+  public darumasubi = "../../../assets/imgs/colores/";
 
   
 

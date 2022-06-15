@@ -113,7 +113,13 @@ export class DarumasGralPage implements OnInit {
   }
 
   goToScanQr(){
-    this.router.navigate(['add-daruma-qr']);
+    let navigationExtras: NavigationExtras = {
+      state: {
+        token: this.toki
+      }
+    }
+    this.router.navigate(['add-daruma-qr'], navigationExtras);
+    
   }
 
   async cargaDarumasLst(){
@@ -225,6 +231,12 @@ export class DarumasGralPage implements OnInit {
         
       }
     }).catch((e: any) => console.log('Error getToken', e));
+  }
+
+  
+
+  goToFormDaruma() {
+    this.router.navigate(['formulario-daruma']);
   }
 
   ionViewWillEnter(){
