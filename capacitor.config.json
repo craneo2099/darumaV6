@@ -4,6 +4,11 @@
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "www",
+  "android": {
+    "minSdkVersion": 21,
+    "compileSdkVersion": 34,
+    "targetSdkVersion": 34
+  },
   "plugins": {
     "SplashScreen": {
       "launchShowDuration": 3000,
