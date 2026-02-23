@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController, Platform, AlertController, MenuController } from '@ionic/angular';
-import { LocalNotifications, ELocalNotificationTriggerUnit } from '@ionic-native/local-notifications/ngx';
+import { LocalNotifications } from '@capacitor/local-notifications'; 
 import { DarumaService } from 'src/app/providers/daruma-service/daruma.service';
 import { Router, NavigationExtras } from '@angular/router';
 
@@ -24,7 +24,6 @@ export class DarumasGralPage implements OnInit {
     public router: Router,
     public ds: DarumaService,
     public loadingCtrl: LoadingController,
-    private localNotifications: LocalNotifications,
     private plt: Platform,
     public alertCtrl: AlertController,
     public menuCtrl: MenuController
@@ -32,59 +31,52 @@ export class DarumasGralPage implements OnInit {
     
   }
 
-  scheduleNotification(){
+  async scheduleNotification(){
     // console.log("EntraNoti");
     if (this.darumasIncompletos == true) {
       // console.log("DarumasIncompletos", this.darumasIncompletos);
-      this.localNotifications.hasPermission()
-      .then(permiso => {
-        //verifica permiso para notificaciones
-        // console.log("TienePermisoNotif", permiso);
-        if (permiso == true) {
-          // tiene permiso
-          // console.log("Programa Notificaciones");
-          this.localNotifications.schedule({
-            id: 1,
-            title: 'Tienes Darumas activos',
-            text: '\u00A1Cumple tus prop\u00F3sitos!',
-            // trigger: { at: new Date(new Date().getTime() + 40 * 1000) },
-            trigger: { every: ELocalNotificationTriggerUnit.WEEK },
-            data: {myData: this.usuario},
-            led: { color: '#FF005E', on: 500, off: 500 } ,
-            icon: 'res://ic_action_name.png',
-            smallIcon: 'res://ic_stat_name'
-          });
-        } else {
-          // no tiene permiso Notificaciones
-          this.localNotifications.requestPermission( )
-          .then(permisoRquest => {
-            //pide permiso Notificaciones
-            console.log("NotifRequest", permisoRquest);
-          }).catch((e: any) => console.log('Error requestPermissionNotif', e));
-        }
-      }).catch((e: any) => console.log('Error permisoNotif', e));
+      const permResult = await LocalNotifications.requestPermissions();
+      //verifica permiso para notificaciones
+      // console.log("TienePermisoNotif", permiso);
+      if (permResult.receive === 'granted') {
+        // tiene permiso
+        // console.log("Programa Notificaciones");
+          await LocalNotifications.schedule({
+            notifications: [
+              {
+                id: 1,
+                title: 'Tienes Darumas activos',
+                body: '\u00A1Cumple tus prop\u00F3sitos!',
+                schedule: {
+                  at: new Date(Date.now() + 60 * 60 * 1000), //1 hour from now
+                  repeats: true
+                },
+                extra: {myData: this.usuario},
+                //adjust path
+                smallIcon: {src: 'ic_stat_name'},
+                icon: {src: 'ic_action_name.png'}
+              }
+            ]
+          
+          // trigger: { at: new Date(new Date().getTime() + 40 * 1000) },
+          // trigger: { every: ELocalNotificationTriggerUnit.WEEK },
+          // data: {myData: this.usuario},
+          // led: { color: '#FF005E', on: 500, off: 500 } ,
+          // icon: 'res://ic_action_name.png',
+          // smallIcon: 'res://ic_stat_name'
+        });
+      } else {
+        console.log('Permiso de Notificaiones denegado')
+      }
+      
     }
   }
 
-  verficaNotiYBorra(){
-    //verifica si ya hay una notificacion
-    this.localNotifications.getAll()
-    .then(obtnNoti => {
-      if (obtnNoti.length == 0) {
-        // console.log("obtnNoti: nada");
-      } else {
-        // console.log("obtnNoti", obtnNoti);
-        // console.log("obtnNotiData", JSON.parse(obtnNoti["0"].data)["myData"]);
-        this.localNotifications.cancelAll()
-        .then(cancelNoti => {
-          // console.log("cancelNoti",cancelNoti);
-          this.localNotifications.clearAll()
-          .then(clearNoti => {
-            // console.log("limpiaNoti", clearNoti);
-          }).catch((e: any) => console.log('Error clearAllNotif', e));
-        }).catch((e: any) => console.log('Error cancelAllNotif', e));
-      }
-    }).catch((e: any) => console.log('Error getAllNotif', e));
+  async verficaNotiYBorra(){
+    const pending = await LocalNotifications.getPending();
+    if (pending.notifications.length > 0) {
+      await LocalNotifications.cancel({ notifications: pending.notifications });
+    }
   }
 
   async goToDetalle(qrcode, token){
@@ -197,17 +189,10 @@ export class DarumasGralPage implements OnInit {
     (await alert).present();
   }
 
-  alertOfNotification(){
-    this.plt.ready().then (() =>{
-      this.localNotifications.on('trigger').subscribe (ras =>{
-        //let user = ras.data ? ras.data.myData : '';
-        // console.log("msgOC",user);
-        this.doAlert(ras.title, "", ras.text);
-      }, error => {
-        // console.log("Error triggerNotifCons", error);
-      });
-    }).catch((e: any) => console.log('Error pltReadycons', e));
-
+  async alertOfNotification(){
+    await LocalNotifications.addListener('localNotificationReceived', (notification) => {
+      this.doAlert(notification.title, "", notification.body);
+    });
   }
 
   verificaToken() {
